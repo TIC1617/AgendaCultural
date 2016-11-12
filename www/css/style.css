@@ -385,12 +385,10 @@ a.setting {
   margin: 5px 0px;
 }
 
-.post-share {
-  clear: both;
-  padding: 2px 0px;
+#catlist dt span {
+    float: right;
+    padding: 0 0 0 20px;
 }
-
-
 
 .title {
     margin-top: 0px;
