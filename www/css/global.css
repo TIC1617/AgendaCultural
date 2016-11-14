@@ -1,32 +1,44 @@
 /* Global CSS */
 
-#main{
-	margin: 3% 20%;
+.main{
+	margin: 3% 10%;
 }
 
-#formImg {
-	position: relative;
-	float: left;
-	width: 25%;
-	overflow: hidden;
+.title{
+	text-align: center;
 }
 
-#formDescription {
+form > .img {
 	position: relative;
 	float: left;
-	width: 75%;
-	padding-left: 2%;
+	width: 100%;
+	height: auto;
+}
+
+form > .img > img{
+	width: 100%;
+	height: auto;
+}
+
+form > .description {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.justifyText {
+	text-align : justify;
 }
 
 form {
 	margin: 50px 5% 5% 5%;
 }
 
-#formDescription > h3 {
+.form > h3 {
 	margin-top: 0px !important;
 }
 
-#validation{ 
+.validation{ 
 	position: relative;
 	float: left;
 	padding: 10px; 
