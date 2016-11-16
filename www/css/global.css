@@ -8,19 +8,19 @@
 	text-align: center;
 }
 
-form > .img {
+.form > .img {
 	position: relative;
 	float: left;
 	width: 100%;
 	height: auto;
 }
 
-form > .img > img{
+.form > .img > img{
 	width: 100%;
 	height: auto;
 }
 
-form > .description {
+.form > .description {
 	position: relative;
 	float: left;
 	width: 100%;
@@ -30,7 +30,7 @@ form > .description {
 	text-align : justify;
 }
 
-form {
+.form {
 	margin: 50px 5% 5% 5%;
 }
 
