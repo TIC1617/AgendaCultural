@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+		<!-- Scripts -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/global.js"></script>
+		<title>Validación de eventos</title>
+	</head>
+	<body>
+		<div class="main">
+			<header>
+				<img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
+				<img src="https://www.gobiernodecanarias.org/gcc/img/logos/ctcd.gif">
+				<h1 class="title">Validar eventos</h1>
+			</header>
+			
+			<div>
+				<div class="form">
+					<div class="img">
+						<img src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/salamac.jpg">
+					</div>
+					<div class="description justifyText">
+						<h3>Charla sobre el Patrimonio Historico y Cultural de Santa Cruz</h3>
+						<p>Problemas y soluciones.La recuperación economica</p>
+						<p><strong>Municipio:</strong> Santa Cruz de Tenerife</p>
+						<p><strong>Lugar:</strong> Sala MAC</p>
+						<p>El <strong>jueves 10 noviembre 2016</strong> a las <strong>18:30 horas</strong></p>
+					</div>
+					<button type="submit" class="btn btn-success" style="float: right; margin-left: 5px;" onclick="formEventsValidation(1);">Validar</button>
+					<button type="submit" class="btn btn-danger" style="float: right;" onclick="formEventsValidation(0);">Rechazar</button>
+				</div>
+			</div>
+			<div>
+				<div class="form">
+					<div class="img" style="margin-top: 10px;">
+						<img src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/bandamunicipalsc.jpg">
+					</div>
+					<div class="description">
+						<h3>Concierto de la Banda Municipal de Santa Cruz</h3>
+						<p>Problemas y soluciones.La recuperacion economica</p>
+						<p><strong>Municipio:</strong> Santa Cruz de Tenerife</p>
+						<p><strong>Lugar:</strong> Sala MAC</p>
+						<p>El <strong>jueves 10 noviembre 2016</strong> a las <strong>18:30 horas</strong></p>
+					</div>
+					<button type="submit" class="btn btn-success" style="float: right; margin-left: 5px;" onclick="formEventsValidation(1);">Validar</button>
+					<button type="submit" class="btn btn-danger" style="float: right;" onclick="formEventsValidation(0);">Rechazar</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
