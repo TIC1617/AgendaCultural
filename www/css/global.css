@@ -42,8 +42,22 @@ h2 {
 	margin-top: 0px !important;
 }
 
-.validation{ 
+.validation{
 	position: relative;
 	float: left;
-	padding: 10px; 
+	padding: 10px;
+}
+
+.ocul {
+  display:none;
+}
+
+.vis {
+  display:block;
+}
+
+.itemEvent, .mapEvent {
+  width: 200px;
+  height: 200px;
+  border: solid 0.5px;
 }
