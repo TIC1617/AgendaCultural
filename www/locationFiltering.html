@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/global.css" />
+		<!-- Scripts -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/global.js"></script>
+		<style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+		<title>Localización de eventos</title>
+	</head>
+
+	<body>
+		<div class="main">
+
+			<header>
+				<img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
+				<img src="https://www.gobiernodecanarias.org/gcc/img/logos/ctcd.gif">
+				<h1 class="title">Localización de eventos</h1>
+			</header>
+
+			<form class="form-horizontal">
+				<fieldset>
+
+				<!-- Form Name -->
+				<legend>Filtros</legend>
+
+				<!-- Select Basic -->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="selectbasic">Cuándo</label>
+				  <div class="col-md-4">
+				    <select id="selectbasic" name="selectbasic" class="form-control">
+				      <option value="0">Hoy</option>
+				      <option value="1">Mañana</option>
+				      <option value="7">Esta semana</option>
+				      <option value="30">Este mes</option>
+				    </select>
+				  </div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="textinput">Distancia (km)</label>
+				  <div class="col-md-4">
+				  <input id="textinput" name="textinput" type="text" placeholder="10" class="form-control input-md">
+
+				  </div>
+				</div>
+
+				<!-- Button -->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="Filter"></label>
+				  <div class="col-md-4">
+				    <button id="Filter" name="Filter" class="btn btn-success">Filtrar</button>
+				  </div>
+				</div>
+
+				</fieldset>
+				</form>
+
+			<div id="map"></div>
+			    <script>
+			      function initMap() {
+			        var uluru = {lat: 28.4848482, lng: -16.3127175};
+			        var map = new google.maps.Map(document.getElementById('map'), {
+			          zoom: 16,
+			          center: uluru
+			        });
+			        var marker = new google.maps.Marker({
+			          position: uluru,
+			          map: map
+			        });
+			      }
+			    </script>
+			    <script async defer
+			    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB79H_1JDmI3scy6ScJxd2ydXos-5yifi4&callback=initMap">
+			    </script>
+
+		</div>
+	</body>
+</html>
