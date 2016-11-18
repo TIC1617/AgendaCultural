@@ -27,6 +27,7 @@ function formLoginValidation(){
 		success: function(data) {
 			alert(data);
 			location.reload();
+			window.location.href = "index.html";
 		}
 	});
 }
