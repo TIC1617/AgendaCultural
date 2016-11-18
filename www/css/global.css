@@ -1,7 +1,7 @@
 /* Global CSS */
 
 #main{
-	margin: 3% 10%;
+	margin: 3% 20%;
 }
 
 #formImg {
@@ -10,7 +10,6 @@
 	width: 25%;
 	overflow: hidden;
 }
-
 
 #formDescription {
 	position: relative;
@@ -31,36 +30,4 @@ form {
 	position: relative;
 	float: left;
 	padding: 10px;
-}
-
-#PlaceImg > img {
-	width: 100%;
-	height: auto;
-}
-
-/* @Media */
-
-/*@media screen and (max-width: 700px){*/
-	.title{
-		font-size: 26px;
-	}
-	.txtcontent{
-		font-size: 14px;
-	/*}*/
-}
-@media screen and (max-width: 650px){
-	.title{
-		font-size: 20px;
-	}
-	.txtcontent{
-		font-size: 14px;
-	}
-}
-@media screen and (max-width: 480px){
-	.title{
-		font-size: 16px;
-	}
-	.txtcontent{
-		font-size: 12px;
-	}
 }
