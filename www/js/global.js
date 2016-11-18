@@ -7,7 +7,7 @@ function formEventsValidation(validate){
 	}else{
 		$.ajax({
 			type: 'post',
-			url: "http://vps281500.ovh.net/agendacultural/EventsValidationController.php",
+			url: "http://vps281500.ovh.net/agendacultural/ajax.php",
 			data: {action : 'eventsValidation'},
 			success: function(data) {
 				alert(data);
