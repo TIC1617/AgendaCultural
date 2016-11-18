@@ -3,6 +3,7 @@ function formEventsValidation(validate){
 		var request = confirm("¿Estás seguro?");
 		if (request == true){
 			alert("Evento rechazado, el creador del evento recibirá un email con esta acción");
+			location.reload(); 
 		}
 	}else{
 		$.ajax({
@@ -16,4 +17,16 @@ function formEventsValidation(validate){
 		});
 	}
 
+}
+
+function formLoginValidation(){
+	$.ajax({
+		type: 'post',
+		url: "http://vps281500.ovh.net/agendacultural/ajax.php",
+		data: {action : 'loginValidation'},
+		success: function(data) {
+			alert(data);
+			location.reload();
+		}
+	});
 }
