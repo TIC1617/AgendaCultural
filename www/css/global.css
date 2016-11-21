@@ -1,5 +1,10 @@
 /* Global CSS */
 
+.login {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
 .main, #catlist{
 	margin: 3% 3%;
 }
@@ -10,6 +15,7 @@ h2 {
 
 .title{
 	text-align: center;
+	margin-bottom: 10%;
 }
 
 .form > .img {
@@ -42,22 +48,8 @@ h2 {
 	margin-top: 0px !important;
 }
 
-.validation{
+.validation{ 
 	position: relative;
 	float: left;
-	padding: 10px;
-}
-
-.ocul {
-  display:none;
-}
-
-.vis {
-  display:block;
-}
-
-.itemEvent, .mapEvent {
-  width: 200px;
-  height: 200px;
-  border: solid 0.5px;
+	padding: 10px; 
 }
