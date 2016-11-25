@@ -1,0 +1,13 @@
+.ocul {
+  display:none;
+}
+
+.vis {
+  display:block;
+}
+
+.itemEvent, .mapEvent {
+  width: 200px;
+  height: 200px;
+  border: solid 0.5px;
+}
