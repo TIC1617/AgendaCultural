@@ -70,3 +70,8 @@ h2 {
 .marginbot100 {
 	margin-bottom: 100%;
 }
+
+#map {
+ height: 400px;
+ width: 100%;
+}
