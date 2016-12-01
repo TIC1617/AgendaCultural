@@ -26,8 +26,11 @@ h2 {
 }
 
 .form > .img > img{
-	width: 100%;
+	/*width: 100%;
+	height: auto;*/
+	width: 60%;
 	height: auto;
+	margin-left: 18%;
 }
 
 .form > .description {
@@ -48,8 +51,22 @@ h2 {
 	margin-top: 0px !important;
 }
 
-.validation{ 
+.validation{
 	position: relative;
 	float: left;
-	padding: 10px; 
+	padding: 10px;
+}
+
+.goright {
+	float: right;
+	margin-right: 4%;
+}
+
+.imglist {
+	 width: 95px;
+	 height: 100%;
+}
+
+.marginbot100 {
+	margin-bottom: 100%;
 }
