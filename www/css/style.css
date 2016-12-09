@@ -24,7 +24,7 @@ a:visited {
 
 .header {
   min-height: 50px;
-  background: #fff;
+  background: #3AA7DC;
   padding: 10px;
   position: relative;
   box-shadow: 0px 0px 5px #888;
@@ -33,7 +33,7 @@ a:visited {
 
 .header a {
   float: left;
-  color: #888;
+  color: #FFF;
   font-size: 21px
 }
 
@@ -54,7 +54,7 @@ a:visited {
     font-size: 26px;
     margin-left: 12px;
     margin-right: 12px;
-    color: #888;
+    color: #FFF;
     position: relative;
     float: right;
 }
@@ -65,7 +65,7 @@ a:visited {
 
   left: 50px;
   font-size: 24px;
-  color: #999;
+  color: #FFF;
 }
 
 .header a.suggestion {
@@ -456,14 +456,26 @@ input[placeholder][class="txt"] {
     padding: 7px 14px;
     color: #999999;
     border: none;
-    /* background-color: transparent; */
+    background-color: transparent;
     position: absolute;
     right: 4px;
     top: 5px;
     border-radius: 0px;
+
 }
 
 .i {
   min-width: 20px;
   color: #ccc;
+}
+
+  .btn-success, .btn-danger {
+  padding: 7px 14px;
+  color: #FFF;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  right: 4px;
+  top: 5px;
+  border-radius: 0px;
 }

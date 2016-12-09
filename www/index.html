@@ -9,12 +9,13 @@
 
         <link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
         <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400'>
+      	<link rel="stylesheet" href='http://fontawesome.io/assets/font-awesome/css/font-awesome.css'>
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="css/style.css">
-
+        <link rel="stylesheet" href="css/global.css">
       </head>
 
   <body>
@@ -22,8 +23,6 @@
 
 	 <div class="wrap">
 	 <div class="toggle-overlay"></div>
-
-
 			<div class="left">
 				<div class="left-head">
 					<div class="top-bar">
@@ -37,6 +36,7 @@
 					</div>
 				</div>
 				<div class="menu-list">
+          <a href="locationFiltering.html" title="home">Cerca de ti</a>
           <a href="index.html" title="home">Eventos</a>
           <a href="ver-espacio.html" title="home">Espacios</a>
           <a href="eventsValidation.html" title="home">Validar Eventos</a>
@@ -46,10 +46,10 @@
 
 			<div class="header">
 				<a href="#" class="toggle-btn"><span class="ion-navicon-round"></span></a>
-        <a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="ion-android-more-vertical"></i></a>
+        <a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
           <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#">usuario</a></li>
-            <li><a href="#">salir</a></li>
+            <li><a href="login.html">Acceso</a></li>
+            <li><a href="#">Salir</a></li>
           </ul>
   			<a href="#" class="all"><span class="ion-android-search"></span></a>
 			</div><!--header//-->
@@ -67,81 +67,70 @@
       <div id="catlist">
 
         <dl>
-          <dt><img src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/ensenarafrica.jpg" alt="Product image" width="93" height="62" />
-            <strong><a href="#">Más Info</a></strong>
-            <a href="event.html">Enseñar África</a>
+          <dt><img class ="imglist" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/ensenarafrica.jpg"  alt="Product image" title="Product Image" />
+
+            Enseñar África
 
           </dt>
           <dd>
             <p>
-              <i class="glyphicon glyphicon-list-alt"></i> Muestra el trabajo de los alumnos de Secundaria integrados en el proyecto homónimo<br />
-              <i class="glyphicon glyphicon-tower"></i> Las Palmas de Gran Canaria<br />
-              <i class="glyphicon glyphicon-map-marker"></i><a href="ver-espacio.html"> Casa África</a><br />
-              <i class="glyphicon glyphicon-calendar"></i> Desde el <strong>viernes 20 mayo 2016</strong> hasta el <strong>viernes 30 diciembre 2016 </strong><br />
-
+              <i class="fa fa-info-circle"></i> Muestra el trabajo de los alumnos de Secundaria integrados en el proyecto homónimo
+              ... <br />
+              <strong><a class= "goright" href="event.html">Más Info</a></strong><br />
+              <i class="fa fa-globe"></i> Las Palmas de Gran Canaria<br />
+              <i class="fa fa-map-marker"></i><a href="ver-espacio.html"> Casa África</a><br />
+              <i class="fa fa-calendar"></i> Desde el <strong>viernes 20 mayo 2016</strong> hasta el <strong>viernes 30 diciembre 2016 </strong><br />
             </p>
 				  </dd>
-          <dd>
-            <a href="#"><span class="btns ion-social-twitter"></span></a>
-            <a href="#"><span class="btns ion-social-facebook"></span></a>
-
-          </dd>
-        </dl>
-
+          </dl>
         <dl>
-          <dt><img src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/expotrino.jpg" alt="Product image" width="93" height="62" />
-            <strong><a href="eventsValidation.html">Más Info</a></strong>
-            <a href="event.html">Exposición permanente del fotoperiodista Trino Garriga</a>
+          <dt><img class = "imglist" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/expotrino.jpg" alt="Product image" title="Product Image" />
+
+            Exposición permanente del fotoperiodista Trino Garriga
+
           </dt>
           <dd>
             <p>
-              <i class="glyphicon glyphicon-list-alt"></i> Memoria gráfica del acontecer histórico de Canarias<br />
-              <i class="glyphicon glyphicon-tower"></i> Santa Cruz de Tenerife<br />
-              <i class="glyphicon glyphicon-map-marker"></i><a href="ver-espacio.html"> Sala de Exposición Los Lavaderos</a><br />
-              <i class="glyphicon glyphicon-calendar"></i> Desde el <strong>martes 21 junio 2016</strong> hasta el <strong>sábado 31 diciembre 2016</strong><br />
+              <i class="fa fa-info-circle"></i> Memoria gráfica del acontecer histórico de Canarias
+              ... <br />
+              <strong><a class= "goright" href="event.html">Más Info</a></strong><br />
+              <i class="fa fa-globe"></i> Santa Cruz de Tenerife<br />
+              <i class="fa fa-map-marker"></i><a href="ver-espacio.html"> Sala de Exposición Los Lavaderos</a><br />
+              <i class="fa fa-calendar"></i> Desde el <strong>martes 21 junio 2016</strong> hasta el <strong>sábado 31 diciembre 2016</strong><br />
             </p>
 				  </dd>
+        </dl>
+
+        <dl>
+          <dt><img class="imglist" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/dealtamira.jpg" alt="Product image" title="Product Image" />
+
+            El largo viaje… De Altamira a la Cueva Pintada
+          </dt>
           <dd>
-            <a href="#"><span class="btns ion-social-twitter"></span></a>
-            <a href="#"><span class="btns ion-social-facebook"></span></a>
+            <p>
+              <i class="fa fa-info-circle"></i> Exposición que simboliza el esperado encuentro de dos yacimientos arqueológicos únicos y emblemáticos, separados por treinta y tres mil años
+              ... <br />
+              <strong><a class= "goright" href="event.html">Más Info</a></strong><br />
+              <i class="fa fa-globe"></i> Gáldar<br />
+              <i class="fa fa-map-marker"></i><a href="ver-espacio.html"> Museo y Parque Arqueológico Cueva Pintada</a><br />
+              <i class="fa fa-calendar"></i> Desde el <strong>martes 12 julio 2016</strong> hasta el <strong>domingo 27 noviembre 2016</strong><br />
+            </p>
           </dd>
         </dl>
 
         <dl>
-          <dt><img src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/dealtamira.jpg" alt="Product image" width="93" height="62" />
-            <strong><a href="event.html">Más Info</a></strong>
-            <a href="event.html">El largo viaje… De Altamira a la Cueva Pintada</a>
+          <dt><img class="imglist" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/juancarlostacoronte.jpg" alt="Product image" title="Product Image" />
+            Taller de Teatro para Jóvenes
           </dt>
           <dd>
             <p>
-              <i class="glyphicon glyphicon-list-alt"></i> Exposición que simboliza el esperado encuentro de dos yacimientos arqueológicos únicos y emblemáticos, separados por treinta y tres mil años<br />
-              <i class="glyphicon glyphicon-tower"></i> Gáldar<br />
-              <i class="glyphicon glyphicon-map-marker"></i><a href="ver-espacio.html"> Museo y Parque Arqueológico Cueva Pintada</a><br />
-              <i class="glyphicon glyphicon-calendar"></i> Desde el <strong>martes 12 julio 2016</strong> hasta el <strong>domingo 27 noviembre 2016</strong><br />
+              <i class="fa fa-info-circle"></i> Edad: de 14 a 16 años. Gratuito.Imparte: Juan Carlos Tacoronte. Todos los lunes
+              ... <br />
+              <strong><a class= "goright" href="event.html">Más Info</a></strong><br />
+              <i class="fa fa-globe"></i> Santa Cruz de Tenerife<br />
+              <i class="fa fa-map-marker"></i><a href="ver-espacio.html"> Biblioteca Pública del Estado en Santa Cruz de Tenerife</a><br />
+              <i class="fa fa-calendar"></i> Desde el <strong>lunes 05 septiembre 2016</strong> hasta el <strong>lunes 26 diciembre 2016</strong><br />
             </p>
-          </dd>
-          <dd>
-            <a href="#"><span class="btns ion-social-twitter"></span></a>
-            <a href="#"><span class="btns ion-social-facebook"></span></a>
-          </dd>
-        </dl>
-
-        <dl>
-          <dt><img src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/juancarlostacoronte.jpg" alt="Product image" width="93" height="62" />
-            <strong><a href="event.html">Más Info</a></strong>
-            <a href="event.html">Taller de Teatro para Jóvenes</a>
-          </dt>
-          <dd>
-            <p>
-              <i class="glyphicon glyphicon-list-alt"></i> Edad: de 14 a 16 años. Gratuito.Imparte: Juan Carlos Tacoronte. Todos los lunes<br />
-              <i class="glyphicon glyphicon-tower"></i> Santa Cruz de Tenerife<br />
-              <i class="glyphicon glyphicon-map-marker"></i><a href="ver-espacio.html"> Biblioteca Pública del Estado en Santa Cruz de Tenerife</a><br />
-              <i class="glyphicon glyphicon-calendar"></i> Desde el <strong>lunes 05 septiembre 2016</strong> hasta el <strong>lunes 26 diciembre 2016</strong><br />
-            </p>
-          </dd>
-          <dd>
-            <a href="#"><span class="btns ion-social-twitter"></span></a>
-            <a href="#"><span class="btns ion-social-facebook"></span></a>
           </dd>
         </dl>
 

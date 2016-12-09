@@ -1,0 +1,17 @@
+.ocul {
+  display:none;
+}
+
+.vis {
+  display:block;
+}
+
+.itemEvent, .mapEvent {
+  max-width: 360px;
+  max-height: 203px;
+  width: 360px;
+  height: 203px;
+  border: solid 0.5px;
+  margin-left: 14%;
+  object-fit: cover;
+}
