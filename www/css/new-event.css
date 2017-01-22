@@ -1,0 +1,20 @@
+#new-event {
+  margin: 2% 10% !important;
+}
+
+.title {
+	font-size: 30px;
+}
+
+#datepicker, #timepicker {
+  z-index:0 !important;
+}
+
+/* @Media */
+
+@media screen and (min-width: 768px) {
+  #new-event {
+    max-width: 600px;
+    margin: 2% auto !important;
+  }
+}
