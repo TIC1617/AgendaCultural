@@ -10,6 +10,16 @@
   z-index:0 !important;
 }
 
+#timepicker {
+  margin-bottom: 15px;
+}
+
+.category-title {
+  margin-top: 20px;
+  margin-bottom: -16px;
+  font-size: 22px;
+}
+
 /* @Media */
 
 @media screen and (min-width: 768px) {
