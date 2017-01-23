@@ -9,8 +9,6 @@ function changeImgOrMap(name){
     document.getElementById("map" + name).classList.add('mapa');
     document.getElementById("map" + name).classList.add('vis');
 
-    urlCoordinate = "";
-    updateMap(urlCoordinate, name);
   }else{
     document.getElementById(name).classList.remove('ocul');
     document.getElementById(name).classList.add('vis');
@@ -19,13 +17,6 @@ function changeImgOrMap(name){
     document.getElementById("map" + name).classList.remove('vis');
     document.getElementById("map" + name).classList.add('ocul');
   }
-}
-
-function updateMap(urlCoordinate, name) {
-  lat = 28.4578159;
-  long = -16.3213541;
-  setLocalization("map" + name, lat, long);
-
 }
 
 function setLocalization(map, lat, lng){

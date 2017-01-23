@@ -27,90 +27,156 @@
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-	<title>Validación de eventos</title>
+	<title>Evento</title>
 </head>
 <body>
-	<!-- Header -->
-	<div class="wrap">
-		<div class="toggle-overlay">
-		</div>
-		<div class="left">
-			<div class="left-head">
-				<div class="top-bar">
-					<div class="overlay">
-					</div>
-					<a class="search" href="#"><span class="ion-search"></span></a>
-					<a class="setting" href="#"><span class="ion-android-more-vertical"></span></a>
-				</div>
-				<div class="user-bar">
-					<img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
-					<p class="name">AgendaCultural</p>
-				</div>
+	<script>
+	URLAPI = 'http://vps265793.ovh.net:3000/api/';
+	</script>
+		<!-- Header -->
+		<div class="wrap">
+			<div class="toggle-overlay">
 			</div>
-			<div class="menu-list">
-				<a href="index.html" title="home">Eventos</a>
-				<a href="ver-espacio.html" title="home">Espacios</a>
-				<a href="eventsValidation.html" title="home">Validar Eventos</a>
-				<a href="new-event.html" title="home">Crear Eventos</a>
-			</div>
-		</div><!--Left//-->
-
-		<div class="header">
-			<a href="#" class="toggle-btn"><span class="ion-navicon-round"></span></a>
-			<a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
-			<ul class="dropdown-menu dropdown-menu-right">
-				<li><a href="login.html">Acceso</a></li>
-				<li><a href="#">Salir</a></li>
-			</ul>
-			<a href="#" class="all"><span class="ion-android-search"></span></a>
-		</div><!--header//-->
-		<div class="header-All">
-			<a class="active" href="#">
-				<form>
-					<button class="btn" type="submit">
-					<i class="fa fa-search"></i>
-					</button>
-					<input type="text" class="txt" placeholder="Search..." />
-				</form>
-			</a>
-		</div>
-	</div>
-		<div id="main">
-			<div class="title">
-				<h1>Charla sobre el Patrimonio Historico y Cultural de Santa Cruz</h1>
-			</div>
-			<div class="container-fluid">
-				<div class="row event">
-					<div class="col-md-12 col-sm-12 col-xs-12 ">
-						<img class="itemEvent" id="Test" src="http://www.tu-evento.com.mx/sites/default/files/tuevento/imagecache/full_image/imagenes_adicionales/e.JPG"
-						onClick="changeImgOrMap('Test')" alt="No cargó la imagen">
-						<div class="mapEvent" id="mapTest" onClick="changeImgOrMap('Test')">
+			<div class="left">
+				<div class="left-head">
+					<div class="top-bar">
+						<div class="overlay">
 						</div>
-						<script>
-						document.getElementById("Test").classList.add('vis');
-						document.getElementById("mapTest").classList.add('ocul');
-						</script>
+						<a class="search" href="#"><span class="ion-search"></span></a>
+						<a class="setting" href="#"><span class="ion-android-more-vertical"></span></a>
+					</div>
+					<div class="user-bar">
+						<img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
+						<p class="name">AgendaCultural</p>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-						<br>
-						<p><strong>Descripción: </strong>Problemas y soluciones.La recuperacion economica</p>
-						<p><strong>Municipio: </strong>Santa Cruz de Tenerife</p>
-						<p><strong>Lugar: </strong><a href="">Sala MAC</a></p>
-						<p>El <strong>jueves 10 noviembre 2016</strong> a las <strong>18:30 horas</strong></p>
-					</div>
+				<div class="menu-list">
+					<a href="index.html" title="home">Eventos</a>
+					<a href="ver-espacio.html" title="home">Espacios</a>
+					<a href="eventsValidation.html" title="home">Validar Eventos</a>
+					<a href="new-event.html" title="home">Crear Eventos</a>
 				</div>
-				<dd class="text-center">
-        	<a target="_blank" href="http://twitter.com/home?status=DESCRIPTION%20URLEVENT">
-						<span class="btns ion-social-twitter"></span>
-					</a>
-					<a target="_blank" href="http://www.facebook.com/sharer.php?u=URLEVENT">
-						<span class="btns ion-social-facebook"></span>
-					</a>
-        </dd>
+			</div><!--Left//-->
+
+			<div class="header">
+				<a href="#" class="toggle-btn"><span class="ion-navicon-round"></span></a>
+				<a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li><a href="login.html">Acceso</a></li>
+					<li><a href="#">Salir</a></li>
+				</ul>
+				<a href="#" class="all"><span class="ion-android-search"></span></a>
+			</div><!--header//-->
+			<div class="header-All">
+				<a class="active" href="#">
+					<form>
+						<button class="btn" type="submit">
+						<i class="fa fa-search"></i>
+						</button>
+						<input type="text" class="txt" placeholder="Search..." />
+					</form>
+				</a>
 			</div>
 		</div>
+		<div ng-app="appEvent" ng-controller="ctrlEvent" />
+			<div id="main">
+				<div class="title">
+					<h1>{{title}}</h1>
+				</div>
+				<div class="container-fluid">
+					<div class="row event">
+						<div class="col-md-12 col-sm-12 col-xs-12 ">
+							<img class="itemEvent" id="Image" src="{{image}}"
+							onClick="changeImgOrMap('Image')" alt="No cargó la imagen">
+							<div class="mapEvent" id="mapImage" onClick="changeImgOrMap('Image')">
+							</div>
+							<script>
+							document.getElementById("Image").classList.add('vis');
+							document.getElementById("mapImage").classList.add('ocul');
+							</script>
+						</div>
+					</div>
+					<div class="row event">
+						<br>
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<dd class="text-center">
+			        	<a target="_blank" href="http://twitter.com/home?status={{description}}%20{{urlevent}}">
+									<span class="btns ion-social-twitter"></span>
+								</a>
+								<a target="_blank" href="http://www.facebook.com/sharer.php?u={{urlevent}}">
+									<span class="btns ion-social-facebook"></span>
+								</a>
+			        </dd>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+							<br>
+							<p><strong>Descripción: </strong>{{description}}</p>
+							<p><strong>Lugar: </strong><a href="{{urlplace}}">{{placename}}</a></p>
+							<p><strong>Municipio: </strong>{{townName}}</p>
+							<p>El <strong> {{day}}/{{month}}/{{year}}</strong> a las <stron>{{hour}}:{{minutes}}</strong></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var app = angular.module('appEvent', []);
+			app.controller('ctrlEvent', function($scope, $http) {
+
+				var loc = document.location.href;
+				var getString = loc.split('?')[1];
+				var GET = getString.split('&');
+				var get = {};
+
+				for(var i = 0, l = GET.length; i < l; i++){
+					var tmp = GET[i].split('=');
+					get[tmp[0]] = unescape(decodeURI(tmp[1]));
+				}
+
+				var promise = $http.get(URLAPI + 'event/' + get.id).then(function(response1) {
+					event = response1.data.data;
+
+					$scope.title = event.titulo;
+					$scope.description = event.descripcion;
+					idTown = event.municipio;
+					$scope.place = event.lugar;
+					$scope.image = event.imagen;
+					$scope.urlevent = event.masinfo;
+					$scope.idspace = event.espacio;
+
+					date = new Date(event.fecini);
+
+					$scope.day = date.getDate();
+					$scope.month = date.getMonth();
+					$scope.year = date.getFullYear();
+					$scope.hour = date.getHours();
+          $scope.minutes = date.getMinutes();
+
+					idSpace = event.espacio;
+
+					return $http.get(URLAPI + '/town/' + idTown);
+				}).then(function(response2) {
+					town = response2.data.data;
+
+					$scope.townName = town[0].desmuni;
+
+					return $http.get(URLAPI + '/culturalspace/' + idSpace);
+
+				}).then(function(response3) {
+					place = response3.data.data;
+
+					$scope.urlplace = 'ver-espacio.html?id=' + idSpace;
+					$scope.placename = place.denominacion;
+
+					setLocalization("mapImage", place.lat, place.lng);
+
+				  return response3.data;
+				});
+			});
+		</script>
 	</body>
 </html>
