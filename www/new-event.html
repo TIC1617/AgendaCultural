@@ -21,6 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="js/index.js"></script>
   </head>
 
@@ -69,7 +70,7 @@
         </a>
       </div><!--Header Search//-->
 
-      <div id="new-event">
+      <div ng-app="newEvent" ng-controller="getData" id="new-event">
 			  <h1 class="title">Crear evento</h1>
         <div id="event-creation" class="col-md-12-block">
           <form action="" method="post">
@@ -79,7 +80,7 @@
 
             <div class="form-group">
               <label class="control-label" for="name">Nombre de la actividad:</label>
-              <input type="text" class="form-control" placeholder="Introduce el nombre" required>
+              <input type="text" class="form-control" placeholder="Introduce el nombre" name="event-name" required>
             </div><!--Name//-->
 
             <div class="form-group">
@@ -114,34 +115,63 @@
               </script>
             </div><!-- Time//-->
 
+            <div class="center-block" id="island-town">
+              <div class="form-group">
+                <label class="control-label" for="place">Isla:</label>
+                <select ng-model="island" ng-click="selectIsland()" class="form-control" name="island" id="select-island" required>
+                  <option value="5">Tenerife</option>
+                  <option value="2">Gran Canaria</option>
+                  <option value="4">Lanzarote</option>
+                  <option value="3">Fuerteventura</option>
+                  <option value="6">La Palma</option>
+                  <option value="7">La Gomera</option>
+                  <option value="8">El Hierro</option>
+                </select>
+              </div><!--Island//-->
+
+              <div class="form-group">
+                <label class="control-label" for="place">Municipio:</label>
+                <select ng-model="town" ng-click="selectTown()" class="form-control" name="town" id="select-town" required>
+                  <option ng-repeat="x in towns" value="{{x.id}}">{{x.name}}</option>
+                </select>
+              </div><!--Town//-->
+            </div>
+
+            <div class="form-group">
+              <label class="control-label" for="place">Espacio cultural:</label>
+              <select class="form-control" name="space" id="select-space" required>
+                <option ng-repeat="x in spaces" value="{{x.id}}">{{x.name}}</option>
+              </select>
+            </div><!--Space//-->
+
             <div class="form-group">
               <label class="control-label" for="place">Lugar:</label>
-              <input type="text" class="form-control" placeholder="Introduce el lugar" required>
+              <input type="text" class="form-control" placeholder="Introduce el lugar" name="place" required>
             </div><!--Place//-->
 
             <div class="form-group">
               <label class="control-label" for="description">Breve descripción:</label>
-              <input type="text" class="form-control" placeholder="Introduce una breve descripción" required>
+              <input type="text" class="form-control" placeholder="Introduce una breve descripción" name="short-description" required>
             </div><!--Description//-->
 
             <div class="form-group">
               <label class="control-label" for="full-description">Descripción:</label>
-              <textarea type="text" class="form-control" rows="5" placeholder="Introduce la descripción" required></textarea>
+              <textarea type="text" class="form-control" rows="5" placeholder="Introduce la descripción" name="full-description" required></textarea>
             </div><!--Full Descripcion//-->
 
             <div class="form-group">
               <label class="control-label" for="url">Enlace externo:</label>
-              <input type="url" class="form-control" placeholder="Introduce una URL externa" required>
+              <input type="url" class="form-control" placeholder="Introduce una URL externa" name="url" required>
             </div><!--URL//-->
 
             <div class="form-group">
               <label class="control-label" for="image">Imagen:</label>
-              <input type="file" id="new-event-image" required>
+              <input type="file" id="new-event-image" name="image" required>
             </div><!--Image//-->
 
             <div class="form-group">
               <label class="control-label" for="tags">Tags:</label>
-              <input type="text" class="form-control" placeholder="Introduce tags relacionados" required>
+              <input type="text" class="form-control" placeholder="Introduce tags relacionados" name="tags" required>
             </div><!--TAGS//-->
 
             <h4 class="category-title">Información de contacto</h4>
@@ -149,22 +179,22 @@
 
             <div class="form-group">
               <label class="control-label" for="name">Nombre de contacto:</label>
-              <input type="text" class="form-control" placeholder="Introduce el nombre" required>
+              <input type="text" class="form-control" placeholder="Introduce el nombre" name="contact-name" required>
             </div><!--Contact Name//-->
 
             <div class="form-group">
-              <label class="control-label" for="name">Email:</label>
-              <input type="email" class="form-control" placeholder="Introduce el email" required>
+              <label class="control-label" for="email">Email:</label>
+              <input type="email" class="form-control" placeholder="Introduce el email" name="email" required>
             </div><!--Contact Email//-->
 
             <div class="form-group">
-              <label class="control-label" for="name">Teléfono:</label>
-              <input type="tel" class="form-control" placeholder="Introduce el teléfono" required>
+              <label class="control-label" for="phone">Teléfono:</label>
+              <input type="tel" class="form-control" placeholder="Introduce el teléfono" name="phone" required>
             </div><!--Contact Phone//-->
 
             <div class="checkbox">
               <label class="control-label" class="checkbox">
-                <input type="checkbox" value="" required> Aceptar términos y condiciones</label>
+                <input type="checkbox" value="" name="terms" required> Aceptar términos y condiciones</label>
             </div>
 
             <button type="submit" class="btn-primary btn-lg btn-block">Crear</button>
@@ -173,5 +203,55 @@
       </div><!--New Event//-->
 
     </div><!--Wrap//-->
+
+    <!--  AngularJS -->
+    <script type="text/javascript">
+      var api = "http://localhost:3000/api/"
+      var app = angular.module("newEvent", []);
+
+      app.controller('getData', ['$scope', '$http', function ($scope, $http) {
+
+        // Get Towns by Island selection list
+        $scope.selectIsland = function () {
+          $scope.towns = [];
+          $scope.spaces = [];
+          $scope.town = undefined;
+          $http( {
+            method: "GET",
+            url: api + "towns/island/" + $scope.island
+          }).success(function(response) {
+            response.data.forEach(function(x) {
+              $scope.towns.push({id: x.id, name: x.desmuni});
+            });
+            $scope.towns.sort(compareByName);
+          }).error(function(response) {
+            $scope.towns = response.status;
+          });
+        }
+
+        // Get CulturalSpaces by Town selection list
+        $scope.selectTown = function () {
+          $scope.spaces = [];
+          $http( {
+            method: "GET",
+            url: api + "culturalspace/town/" + $scope.town
+          }).success(function(response) {
+            response.data.forEach(function(x) {
+              $scope.spaces.push({id: x.id, name: x.denominacion});
+            });
+            $scope.spaces.sort(compareByName);
+          }).error(function(response) {
+            $scope.spaces = response.status;
+          });
+        }
+
+      }]);
+
+      // Utils
+      function compareByName(a, b) {
+        return (a.name > b.name) ? 1 : (a.name < b.name) ? -1 : 0;
+      }
+    </script>
+
   </body>
 </html>
