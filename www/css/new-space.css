@@ -1,0 +1,22 @@
+#new-space {
+  margin: 2% 10% !important;
+}
+
+.title {
+	font-size: 30px;
+}
+
+.category-title {
+  margin-top: 20px;
+  margin-bottom: -16px;
+  font-size: 22px;
+}
+
+/* @Media */
+
+@media screen and (min-width: 768px) {
+  #new-space {
+    max-width: 600px;
+    margin: 2% auto !important;
+  }
+}

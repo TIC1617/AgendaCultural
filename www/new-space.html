@@ -3,63 +3,233 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Crear espacio cultural</title>
-    <link rel="stylesheet" href="css/global.css">
+
+    <!--  Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400'>
+    <link rel="stylesheet" href='http://fontawesome.io/assets/font-awesome/css/font-awesome.css'>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="css/new-space.css">
+
+    <script src="js/index.js"></script>
   </head>
   <body>
-    <div id="main">
-      <header>
-        <img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
-        <img src="https://www.gobiernodecanarias.org/gcc/img/logos/ctcd.gif">
-        <h1>Crear un nuevo espacio cultural</h1>
-      </header>
-      <div id="event-creation">
-        <form action="" method="post">
-          <div class="form-group">
-            <div class="form-group">
-              <label class="control-label" for="name">Nombre del espacio cultural:</label>
-              <input type="text" class="form-control" placeholder="Introduce el nombre" required>
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="name">Municipio: </label>
-              <input type="text" class="form-control" placeholder="Introduce el municipio" required>
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="url">Enlace externo:</label>
-              <input type="url" class="form-control" placeholder="Introduce una URL externa" required>
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="name">Dirección: </label>
-              <input type="text" class="form-control" placeholder="Introduce el municipio" required>
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="name">Mail:</label>
-              <input type="text" class="form-control" placeholder="Introduce el e-mail de contacto" required>
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="name">Instalaciones:</label>
-              <input type="text" class="form-control" placeholder="Introduce las instalaciones de las que dispone" required>
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="name">Usos de la instalación:</label>
-              <input type="text" class="form-control" placeholder="Introduce los usos del espacio cultural" required>
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="name">Página web del espacio:</label>
-              <input type="text" class="form-control" placeholder="Introduce la página web" required>
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="name">Facebook del espacio cultural:</label>
-              <input type="text" class="form-control" placeholder="Introduce la página de Facebook del espacio" required>
-            </div>
+    <div class="wrap">
+      <div class="toggle-overlay"></div>
+
+      <div class="left">
+        <div class="left-head">
+          <div class="top-bar">
+            <div class="overlay"></div>
+            <a class="search" href="#"><span class="ion-search"></span></a>
+            <a class="setting" href="#"><span class="ion-android-more-vertical"></span></a>
           </div>
-        </form>
+          <div class="user-bar">
+            <img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
+            <p class="name">AgendaCultural</p>
+          </div>
+        </div>
+        <div class="menu-list">
+          <a href="index.html" title="Eventos">Eventos</a>
+          <a href="ver-espacio.html" title="Espacios">Espacios</a>
+          <a href="eventsValidation.html" title="Validar Eventos">Validar Eventos</a>
+          <a href="new-event.html" title="Crear Eventos">Crear Eventos</a>
+        </div>
+      </div><!--Left//-->
+
+      <div class="header">
+        <a href="#" class="toggle-btn"><span class="ion-navicon-round"></span></a>
+        <a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="login.html">Acceso</a>
+          <li><a href="#">Salir</a></li>
+        </ul>
+        <a href="#" class="all"><span class="ion-android-search"></span></a>
+      </div><!--Header//-->
+
+      <div class="header-All">
+        <a class="active" href="#">
+          <form>
+            <button class="btn" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+            <input type="text" class="txt" placeholder="Search..." />
+          </form>
+        </a>
+      </div><!--Header Search//-->
+
+      <div id="main">
+        <div ng-app="newSpace" ng-controller="getData" id="new-space">
+          <h1>Crear un nuevo espacio cultural</h1>
+          <form ng-submit="submitEvent()" method="post">
+            <div class="form-group">
+              <div class="form-group">
+                <label class="control-label" for="name">Nombre del espacio cultural:</label>
+                <input ng-model="name" type="text" class="form-control" placeholder="Introduce el nombre">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="place">Isla:</label>
+                <select ng-model="island" ng-click="selectIsland()" class="form-control" name="island" id="select-island">
+                  <option value="">Seleccionar una opción</option>
+                  <option value="5">Tenerife</option>
+                  <option value="2">Gran Canaria</option>
+                  <option value="4">Lanzarote</option>
+                  <option value="3">Fuerteventura</option>
+                  <option value="6">La Palma</option>
+                  <option value="7">La Gomera</option>
+                  <option value="8">El Hierro</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="place">Municipio:</label>
+                <select ng-model="town" ng-click="selectTown()" class="form-control" name="town" id="select-town">
+                  <option value="">Seleccionar una opción</option>
+                  <option ng-repeat="x in towns" value="{{x.id}}">{{x.name}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Nombre de la imagen del espacio:</label>
+                <input ng-model="nameImage" type="text" class="form-control" placeholder="Introduce el nombre de la imagen">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="url">CP:</label>
+                <input ng-model="cp" type="text" class="form-control" placeholder="Código postal">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="url">Teléfono:</label>
+                <input ng-model="phone" type="text" class="form-control" placeholder="Telefono">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="url">Fax:</label>
+                <input ng-model="fax" type="text" class="form-control" placeholder="Fax">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="url">Enlace externo del espacio:</label>
+                <input ng-model="url" type="url" class="form-control" placeholder="Introduce una URL externa">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Dirección: </label>
+                <input ng-model="address" type="text" class="form-control" placeholder="Introduce el municipio">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Mail:</label>
+                <input ng-model="mail" type="text" class="form-control" placeholder="Introduce el e-mail de contacto">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Instalaciones:</label>
+                <input ng-model="install" type="text" class="form-control" placeholder="Introduce las instalaciones de las que dispone">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Latitud:</label>
+                <input ng-model="latitude" type="text" class="form-control" placeholder="Introduce la longuitud de las instalaciones">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Longuitud:</label>
+                <input ng-model="longuitude" type="text" class="form-control" placeholder="Introduce la latitude instalaciones">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Horario:</label>
+                <input ng-model="hours" type="text" class="form-control" placeholder="Introduce el horario de la instalación">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Aforo:</label>
+                <input ng-model="aforo" type="text" class="form-control" placeholder="Introduce el aforo de la instalación">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Usos de la instalación:</label>
+                <input ng-model="used" type="text" class="form-control" placeholder="Introduce los usos del espacio cultural">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Página web del espacio:</label>
+                <input type="text" ng-model="web" class="form-control" placeholder="Introduce la página web">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Facebook del espacio cultural:</label>
+                <input type="url" ng-model="facebook" class="form-control" placeholder="Introduce la página de Facebook del espacio">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Youtube del espacio cultural:</label>
+                <input type="url" ng-model="youtube" class="form-control" placeholder="Introduce la página de Youtube del espacio">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="name">Twitter del espacio cultural:</label>
+                <input type="url" ng-model="twitter" class="form-control" placeholder="Introduce la página de Twitter del espacio">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
+          </form>
+          <script>
+            URLNEWSPACE = "";
+            var app = angular.module("newSpace", []);
+
+            app.controller('getData', ['$scope', '$http', function ($scope, $http) {
+              $scope.message = "";
+              // Get Towns by Island selection list
+              $scope.selectIsland = function () {
+                if ($scope.island == null) return;
+                $scope.towns = [];
+                $scope.town = undefined;
+
+                $http.get(URLNEWSPACE + "towns/island/" + $scope.island)
+                .success(function(response) {
+                  response.data.forEach(function(x) {
+                  $scope.towns.push({id: x.id, name: x.desmuni});
+                });
+
+                $scope.towns.sort(compareByName);
+              }).error(function(response) {
+                $scope.towns = response.status;
+              });
+            }
+
+            $scope.submitEvent = function () {
+              var data = {
+                "id": "123456789987654321",
+                "idmuni": $scope.town,
+                "denominacion": $scope.name,
+                "direccion": $scope.address,
+                "codpos": $scope.cp,
+                "telefono": $scope.phone,
+                "fax": $scope.fax,
+                "mail": $scope.mail,
+                "web": $scope.web,
+                "horario": $scope.hours,
+                "instalaciones": $scope.install,
+                "aforo": $scope.aforo,
+                "facebook": $scope.facebook,
+                "youtube": $scope.youtube,
+                "twitter": $scope.twitter,
+                "imag01": $scope.nameImage,
+                "lat": $scope.longuitude,
+                "lng": $scope.latitude,
+              };
+
+              $http.post(URLNEWSPACE + "space", data)
+              .success(function(response) {
+                window.location.href = 'index.html';
+              }).error(function(response) {
+
+              });
+            }
+          }]);
+
+          function compareByName(a, b) {
+            return (a.name > b.name) ? 1 : (a.name < b.name) ? -1 : 0;
+          }
+        	</script>
+        </div>
       </div>
     </div>
   </body>
