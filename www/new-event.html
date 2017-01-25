@@ -73,22 +73,22 @@
       <div ng-app="newEvent" ng-controller="getData" id="new-event">
 			  <h1 class="title">Crear evento</h1>
         <div id="event-creation" class="col-md-12-block">
-          <form action="" method="post">
+          <form ng-submit="submitEvent()" method="post">
 
             <h4 class="category-title">Información del evento</h4>
             <hr>
 
             <div class="form-group">
               <label class="control-label" for="name">Nombre de la actividad:</label>
-              <input type="text" class="form-control" placeholder="Introduce el nombre" name="event-name" required>
+              <input type="text" ng-model="name" class="form-control" placeholder="Introduce el nombre" name="event-name" required>
             </div><!--Name//-->
 
             <div class="form-group">
               <label class="control-label" for="date">Fecha:</label>
               <div class="input-daterange input-group" id="datepicker">
-                <input type="text" class="input-sm form-control" placeholder="Inicio" name="date-start" required>
+                <input type="text" ng-model="dateStart" class="input-sm form-control" placeholder="Inicio" name="date-start" required>
                 <span class="input-group-addon">hasta</span>
-                <input type="text" class="input-sm form-control" placeholder="Cierre" name="date-end" required>
+                <input type="text" ng-model="dateEnd" class="input-sm form-control" placeholder="Cierre" name="date-end" required>
                 <script type="text/javascript">
                   $('#datepicker').datepicker({
                     language: "es",
@@ -104,14 +104,14 @@
               <label class="control-label" for="time">Horario:</label>
               <div class="input-group bootstrap-timepicker" id="timepicker">
                 <span class="input-group-addon">
-                  <input id="time-start" type="text" class="form-control input-small" name="time-start" required>
+                  <input type="text" ng-model="timeStart" id="time-start" class="form-control input-small" name="time-start" required>
                 </span>
                 <span class="input-group-addon">
-                  <input id="time-end" type="text" class="form-control input-small" name="time-end" required>
+                  <input type="text" ng-model="timeEnd" id="time-end" class="form-control input-small" name="time-end" required>
                 </span>
               <script type="text/javascript">
-                $('#time-start').timepicker();
-                $('#time-end').timepicker();
+                $('#time-start').timepicker({showMeridian: false});
+                $('#time-end').timepicker({showMeridian: false});
               </script>
             </div><!-- Time//-->
 
@@ -119,6 +119,7 @@
               <div class="form-group">
                 <label class="control-label" for="place">Isla:</label>
                 <select ng-model="island" ng-click="selectIsland()" class="form-control" name="island" id="select-island" required>
+                  <option value="">Seleccionar una opción</option>
                   <option value="5">Tenerife</option>
                   <option value="2">Gran Canaria</option>
                   <option value="4">Lanzarote</option>
@@ -132,6 +133,7 @@
               <div class="form-group">
                 <label class="control-label" for="place">Municipio:</label>
                 <select ng-model="town" ng-click="selectTown()" class="form-control" name="town" id="select-town" required>
+                  <option value="">Seleccionar una opción</option>
                   <option ng-repeat="x in towns" value="{{x.id}}">{{x.name}}</option>
                 </select>
               </div><!--Town//-->
@@ -139,40 +141,36 @@
 
             <div class="form-group">
               <label class="control-label" for="place">Espacio cultural:</label>
-              <select class="form-control" name="space" id="select-space" required>
+              <select ng-model="space" class="form-control" name="space" id="select-space" required>
+                <option value="">Seleccionar una opción</option>
                 <option ng-repeat="x in spaces" value="{{x.id}}">{{x.name}}</option>
               </select>
             </div><!--Space//-->
 
             <div class="form-group">
               <label class="control-label" for="place">Lugar:</label>
-              <input type="text" class="form-control" placeholder="Introduce el lugar" name="place" required>
+              <input type="text" ng-model="place" class="form-control" placeholder="Introduce el lugar" name="place" required>
             </div><!--Place//-->
 
             <div class="form-group">
               <label class="control-label" for="description">Breve descripción:</label>
-              <input type="text" class="form-control" placeholder="Introduce una breve descripción" name="short-description" required>
+              <input type="text" ng-model="shortDescription" class="form-control" placeholder="Introduce una breve descripción" name="short-description" required>
             </div><!--Description//-->
 
             <div class="form-group">
               <label class="control-label" for="full-description">Descripción:</label>
-              <textarea type="text" class="form-control" rows="5" placeholder="Introduce la descripción" name="full-description" required></textarea>
+              <textarea type="text" ng-model="fullDescription" class="form-control" rows="5" placeholder="Introduce la descripción" name="full-description" required></textarea>
             </div><!--Full Descripcion//-->
 
             <div class="form-group">
               <label class="control-label" for="url">Enlace externo:</label>
-              <input type="url" class="form-control" placeholder="Introduce una URL externa" name="url" required>
+              <input type="text" ng-model="url" class="form-control" placeholder="http://" name="url">
             </div><!--URL//-->
 
             <div class="form-group">
               <label class="control-label" for="image">Imagen:</label>
-              <input type="file" id="new-event-image" name="image" required>
+              <input type="text" class="form-control" ng-model="image" id="new-event-image" placeholder="Añade una imagen externa" name="image" required>
             </div><!--Image//-->
-
-            <div class="form-group">
-              <label class="control-label" for="tags">Tags:</label>
-              <input type="text" class="form-control" placeholder="Introduce tags relacionados" name="tags" required>
-            </div><!--TAGS//-->
 
             <h4 class="category-title">Información de contacto</h4>
             <hr>
@@ -206,50 +204,91 @@
 
     <!--  AngularJS -->
     <script type="text/javascript">
-      var api = "http://localhost:3000/api/"
+      var api = "http://localhost:3000/api/";
       var app = angular.module("newEvent", []);
 
       app.controller('getData', ['$scope', '$http', function ($scope, $http) {
 
         // Get Towns by Island selection list
         $scope.selectIsland = function () {
+          if ($scope.island == null) return;
           $scope.towns = [];
           $scope.spaces = [];
           $scope.town = undefined;
-          $http( {
-            method: "GET",
-            url: api + "towns/island/" + $scope.island
-          }).success(function(response) {
+          $http.get(api + "towns/island/" + $scope.island).
+          success(function(response) {
             response.data.forEach(function(x) {
               $scope.towns.push({id: x.id, name: x.desmuni});
             });
             $scope.towns.sort(compareByName);
           }).error(function(response) {
-            $scope.towns = response.status;
+            console.log("Failed to get towns: " + response);
           });
         }
 
         // Get CulturalSpaces by Town selection list
         $scope.selectTown = function () {
+          if ($scope.town == null) return;
           $scope.spaces = [];
-          $http( {
-            method: "GET",
-            url: api + "culturalspace/town/" + $scope.town
-          }).success(function(response) {
+          $http.get(api + "culturalspace/town/" + $scope.town).
+          success(function(response) {
             response.data.forEach(function(x) {
               $scope.spaces.push({id: x.id, name: x.denominacion});
             });
             $scope.spaces.sort(compareByName);
           }).error(function(response) {
-            $scope.spaces = response.status;
+            console.log("Failed to get cultural spaces: " + response);
           });
         }
 
+        // Submit new event
+        $scope.submitEvent = function () {
+          var data = {
+            "id": 30000,
+            "tipoagenda": 1,
+            "fecini": getDate($scope.dateStart),
+            "fecfin": getDate($scope.dateEnd),
+            "dias": elapsedDays($scope.dateStart, $scope.dateEnd),
+            "tipo": 3,
+            "isla": $scope.island,
+            "municipio": $scope.town,
+            "espacio": $scope.space,
+            "lugar": $scope.place,
+            "titulo": $scope.name,
+            "subtitulo": $scope.shortDescription,
+            "descripcion": $scope.fullDescription,
+            "hora": $scope.timeStart.split(':')[0],
+            "minuto": $scope.timeStart.split(':')[1],
+            "imagen": $scope.image,
+            "masinfo": $scope.url = $scope.url || "",
+            "tipomasinfo": "U",
+            "usuario": "krusty",
+            "fechor": new Date().toISOString().split('.')[0]
+          };
+
+          $http.post(api + "event", data).
+          success(function(response) {
+            console.log("Created new event!");
+            window.location.href = 'index.html';
+          }).error(function(response) {
+            console.log("Failed to create new event: " + response);
+          });
+        }
       }]);
 
       // Utils
       function compareByName(a, b) {
         return (a.name > b.name) ? 1 : (a.name < b.name) ? -1 : 0;
+      }
+      function getDate(d) {
+        return (d == null) ? "" : "20" + d.split('/').reverse().join('-');
+      }
+      function elapsedDays(a, b) {
+        a = a.split('/');
+        b = b.split('/');
+        var start = new Date(a[2],a[1],a[0]);
+        var end = new Date(b[2],b[1],b[0]);
+        return (end.getTime() - start.getTime()) / (1000*60*60*24);
       }
     </script>
 
