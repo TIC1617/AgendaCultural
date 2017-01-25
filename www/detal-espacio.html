@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/map.css">
+  <script type="text/javascript" src="js/map.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+	<!-- Styles -->
+	<link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+	<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400'>
+	<link rel="stylesheet" href='http://fontawesome.io/assets/font-awesome/css/font-awesome.css'>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/espacios.css">
+
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+	<title>Espacio</title>
+</head>
+<body>
+	<div ng-app="app" ng-controller="ctrl" />
+		<!-- Header -->
+		<div class="wrap">
+			<div class="toggle-overlay">
+			</div>
+			<div class="left">
+				<div class="left-head">
+					<div class="top-bar">
+						<div class="overlay">
+						</div>
+						<a class="search" href="#"><span class="ion-search"></span></a>
+						<a class="setting" href="#"><span class="ion-android-more-vertical"></span></a>
+					</div>
+					<div class="user-bar">
+						<img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
+						<p class="name">AgendaCultural</p>
+					</div>
+				</div>
+				<div class="menu-list">
+					<a href="index.html" title="home">Eventos</a>
+					<a href="ver-espacio.html" title="home">Espacios</a>
+					<a href="eventsValidation.html" title="home">Validar Eventos</a>
+					<a href="new-event.html" title="home">Crear Eventos</a>
+				</div>
+			</div><!--Left//-->
+
+			<div class="header">
+				<a href="#" class="toggle-btn"><span class="ion-navicon-round"></span></a>
+				<a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li><a href="login.html">Acceso</a></li>
+					<li><a href="#">Salir</a></li>
+				</ul>
+				<a href="#" class="all"><span class="ion-android-search"></span></a>
+			</div><!--header//-->
+			<div class="header-All">
+				<a class="active" href="#">
+					<form>
+						<button class="btn" type="submit">
+						<i class="fa fa-search"></i>
+						</button>
+						<input type="text" class="txt" placeholder="Search..." />
+					</form>
+				</a>
+			</div>
+		</div>
+			<div id="main">
+				<div class="col-md-7 col-sm-12 col-xs-12 center-block">
+					<h1>{{name}}</h1>
+				</div>
+				<div class="container-fluid">
+					<div class="row event">
+						<div id="PlaceImg" class="col-md-12 col-sm-12 col-xs-12">
+							<img class="itemEvent" id="Image" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/oficinadeapoyo/.content/galeria/espacios/{{img}}"
+							onClick="changeImgOrMap('Image')" alt="No cargó la imagen">
+							<div class="mapEvent" id="mapImage" onClick="changeImgOrMap('Image')">
+							</div>
+							<p style="margin-left: 14%;"><strong>Pulsa</strong> en la foto para ver mapa.</p>
+							<script>
+							document.getElementById("Image").classList.add('vis');
+							document.getElementById("mapImage").classList.add('ocul');
+							</script>
+							<div id="place">
+		    					<div class="form-group row">
+		    						<div id="PlaceDescription" class="txtcontent col-md-12 col-sm-12 col-xs-12">
+		    							<br>
+											<table class="table table-hover center-block">
+											  <thead>
+											    <tr>
+											      <th colspan="3"><h4>Descripción</h4></th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Uso Principal</strong></td>
+											      <td>{{princuse | uppercase}}</td>
+													</tr>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Instalaciones</strong></td>
+											      <td>{{facilities | uppercase}}</td>
+											    </tr>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+														<td><strong>Aforo</strong></td>
+														<td>{{seating | uppercase}}</td>
+											    </tr>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+														<td><strong>Horario</strong></td>
+														<td>{{seating | uppercase}}</td>
+											    </tr>
+											  </tbody>
+											</table>
+											<table class="table table-hover center-block">
+											  <thead>
+											    <tr>
+											      <th colspan="3"><h4>Localización</h4></th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Dirección</strong></td>
+											      <td>{{address | uppercase}} ({{zipcode}})</td>
+													</tr>
+												</tbody>
+											</table>
+											<table class="table table-hover center-block">
+											  <thead>
+											    <tr>
+											      <th colspan="3"><h4>Social</h4></th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Web</strong></td>
+											      <td><a href="{{web}}"> {{web}}</a></td>
+													</tr>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Mail</strong></td>
+											      <td><a href="mailto:{{mail}}"> {{mail}}</a></td>
+													</tr>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Teléfono</strong></td>
+											      <td>{{telefono}}</td>
+													</tr>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Facebook</strong></td>
+											      <td><a href="{{facebook}}"> {{facebook}}</a></td>
+													</tr>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Twitter</strong></td>
+											      <td><a href="{{twiter}}"> {{twiter}}</a></td>
+													</tr>
+											    <tr>
+														<th scope="row"><i class="fa fa-circle-o" aria-hidden="true"></i></th>
+											      <td><strong>Youtube</strong></td>
+											      <td><a href="{{youtube}}"> {{youtube}}</a></td>
+													</tr>
+												</tbody>
+											</table>
+		    						</div>
+		    					<div>
+		    			</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<script>
+			var app = angular.module('app', []);
+			app.controller('ctrl', function($scope, $http) {
+
+				var loc = document.location.href;
+   			var getString = loc.split('?')[1];
+   			var GET = getString.split('&');
+  			var get = {};
+
+		   	for(var i = 0, l = GET.length; i < l; i++){
+					var tmp = GET[i].split('=');
+		      get[tmp[0]] = unescape(decodeURI(tmp[1]));
+		   	}
+
+				$http.get('/api/culturalspace/' + get.id)
+			  .then(function(response) {
+						event = response.data.data;
+
+						$scope.name = event.denominacion;
+						$scope.idtown = event.idmuni;
+						$scope.address = event.direccion;
+						$scope.zipcode = event.codpos;
+						$scope.phone = event.telefono;
+						$scope.mail = event.mail;
+						$scope.web = event.web;
+						$scope.facebook = event.facebook;
+						$scope.twiter = event.twitter;
+						$scope.youtube = event.youtube;
+						$scope.img = event.imag01;
+						$scope.seating = event.aforo;
+						$scope.princuse = event.usoprincipal;
+						$scope.facilities = event.instalaciones;
+						$scope.lat = event.lat;
+						$scope.long = event.lng;
+						$scope.shedule = event.horario;
+
+				});
+			});
+		</script>
+	</body>
+</html>
