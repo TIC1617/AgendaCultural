@@ -82,47 +82,43 @@
 		</div>
 			<div id="main">
 				<div class="title col-md-7 col-sm-12 col-xs-12">
-					<h1>{{name}}</h1>
+					<h1> Lista de Espacios<h1>
 				</div>
 				<div class="container-fluid">
 					<div class="row event">
 						<div class="col-md-7 col-sm-12 col-xs-12 ">
-							<img style="margin-left: 27%" class="itemEvent" id="Image" src="{{img}}"
-							onClick="changeImgOrMap('Image')" alt="No cargó la imagen">
-							<div class="mapEvent" id="mapImage" onClick="changeImgOrMap('Image')">
+							<div class="form-group">
+								<label class="control-label" for="place">Isla:</label>
+								<select ng-model="island" ng-click="selectIsland()" class="form-control" name="island" id="select-island" required>
+									<option value="">Seleccionar una opción</option>
+									<option value="2">Gran Canaria</option>
+									<option value="3">Fuerteventura</option>
+									<option value="4">Lanzarote</option>
+									<option value="5">Tenerife</option>
+									<option value="6">La Palma</option>
+									<option value="7">La Gomera</option>
+									<option value="8">El Hierro</option>
+									<option value="9">La Graciosa</option>
+
+								</select>
+							</div><!--Island//-->
+							<div class="form-group">
+								<label class="control-label" for="place">Municipio:</label>
+								<select ng-model="town" ng-click="selectTown()" class="form-control" name="town" id="select-town" required>
+									<option value="">Seleccionar una opción</option>
+									<option ng-repeat="x in towns" value="{{x.id}}">{{x.name}}</option>
+								</select>
+							</div><!--Town//-->
 							</div>
-							<script>
-							document.getElementById("Image").classList.add('vis');
-							document.getElementById("mapImage").classList.add('ocul');
-							</script>
-							<div id="place">
-		    					<div class="form-group row">
-		    						<div id="PlaceDescription" class="txtcontent col-md-7 col-sm-12 col-xs-12" >
-		    							<br>
-											<p align=center>Localización al hacer click en la foto</p>
-											<hr>
-											<h4><strong>Descripción</strong></h4>
-											<hr>
-											<p><strong>Uso Principal:</strong> {{princuse}}</p>
-											<p><strong>Instalaciones:</strong> {{facilities}}</p>
-											<p><strong>Aforo:</strong> {{seating}}</p>
-											<p><strong>Horario:</strong> {{shedule}}</p>
-											<hr>
-											<h4><strong>Localización</strong></h4>
-											<hr>
-											<p><strong>Dirección:</strong> {{address}}, {{zipcode}} ({{town}})</p>
-											<!-- <p><strong>Mapa:</strong></a> {{lat}},{{long}}</p> -->
-											<hr>
-											<h4><strong>Social</strong></h4>
-											<hr>
-											<p><strong>Web:</strong><a href="{{web}}"> {{web}}</a></p>
-											<p><strong>Mail:</strong><a href="{{mail}}"> {{mail}}</a></p>
-											<p><strong>Teléfono:</strong></a>{{phone}}</p>
-											<p><strong>Facebook:</strong><a href="{{facebook}}"> {{facebook}}</a></p>
-											<p><strong>Twitter:</strong><a href="{{twiter}}"> {{twiter}}</a></p>
-											<p><strong>Youtube:</strong><a href="{{youtube}}"> {{youtube}}</a></p>
-		    						</div>
-		    					<div>
+							<div id="table" class="center-block">
+								<table class="table table-hover" >
+										<th><strong>Nombre espacio cultural</strong></th>
+										<tbody>
+											<tr ng-repeat="x in spaces">
+			 									<td><a href="detal-espacio.html?id={{x.id}}">{{x.name}}</a></td>
+											</tr>
+										</tbody>
+								</table>
 		    			</div>
 						</div>
 					</div>
@@ -130,40 +126,44 @@
 		</div>
 		<script>
 			var app = angular.module('app', []);
+			var api = "/api/"
 			app.controller('ctrl', function($scope, $http) {
 
-				var loc = document.location.href;
-   			var getString = loc.split('?')[1];
-   			var GET = getString.split('&');
-  			var get = {};
+				$scope.selectIsland = function () {
+					if ($scope.island == null) return;
+					$scope.towns = [];
+					$scope.spaces = [];
+					$scope.town = undefined;
 
-		   	for(var i = 0, l = GET.length; i < l; i++){
-					var tmp = GET[i].split('=');
-		      get[tmp[0]] = unescape(decodeURI(tmp[1]));
-		   	}
+					$http.get(api + "towns/island/" + $scope.island).
+					success(function(response) {
+						response.data.forEach(function(x) {
+							$scope.towns.push({id: x.id, name: x.desmuni});
+						});
+						$scope.towns.sort(compareByName);
+					}).error(function(response) {
+						$scope.towns = response.status;
+					});
+				}
 
-				$http.get('http://vps265793.ovh.net:3000/api/culturalspace/' + get.id)
-			  .then(function(response) {
-						event = response.data.data;
+				function compareByName(a, b) {
+					return (a.name > b.name) ? 1 : (a.name < b.name) ? -1 : 0;
+				}
 
-						$scope.name = event.denominacion;
-						$scope.town = event.idmuni; //FALTA COMPLTAR
-						$scope.address = event.direccion;
-						$scope.zipcode = event.codpos;
-						$scope.phone = event.telefono;
-						$scope.mail = event.mail;
-						$scope.web = event.web;
-						$scope.facebook = event.facebook;
-						$scope.twiter = event.twitter;
-						$scope.youtube = event.youtube;
-						$scope.img = event.imag01;
-						$scope.seating = event.aforo;
-						$scope.princuse = event.usoprincipal;
-						$scope.facilities = event.instalaciones;
-						$scope.lat = event.lat;
-						$scope.long = event.lng;
-						$scope.shedule = event.horario;
-			  });
+				$scope.selectTown = function () {
+          if ($scope.town == null) return;
+          $scope.spaces = [];
+
+          $http.get(api + "culturalspace/town/" + $scope.town).
+          success(function(response) {
+            response.data.forEach(function(x) {
+              $scope.spaces.push({id: x.id, name: x.denominacion});
+            });
+            $scope.spaces.sort(compareByName);
+          }).error(function(response) {
+            $scope.spaces = response.status;
+          });
+        };
 			});
 		</script>
 	</body>
