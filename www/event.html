@@ -89,8 +89,8 @@
 					<div class="row event">
 						<div class="col-md-12 col-sm-12 col-xs-12 ">
 							<img class="itemEvent" id="Image" src="http://www.gobiernodecanarias.com/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/{{image}}"
-							onClick="changeImgOrMap('Image')" alt="No cargó la imagen">
-							<div class="mapEvent" id="mapImage" onClick="changeImgOrMap('Image')">
+							ng-click="updateMap()" alt="No cargó la imagen">
+							<div class="mapEvent" id="mapImage" ng-click="updateMap()">
 							</div>
 							<script>
 							document.getElementById("Image").classList.add('vis');
@@ -172,10 +172,15 @@
 					$scope.urlplace = 'ver-espacio.html?id=' + idSpace;
 					$scope.placename = place.denominacion;
 
-					setLocalization("mapImage", place.lat, place.lng);
+					$scope.latitude = place.lat;
+					$scope.longuitude = place.lng;
 
 				  return response3.data;
 				});
+
+				$scope.updateMap = function () {
+					changeImgOrMap('Image', $scope.latitude, $scope.longuitude);
+				}
 			});
 		</script>
 	</body>
