@@ -100,7 +100,7 @@
 				
 			</div>
 			<div class="forbidden">
-				<p>Sólo usuarios registrados pueden ver está página.</p>
+				<p>No tienes permisos para acceder está página.</p>
 				<button type="button" class="btn btn-success" onclick="loginRedirect();">Acceder</button>
 			</div>
 		</div>
@@ -115,7 +115,7 @@
 			var i = 0;
 			var cookie =  document.cookie;
 			//document.cookie = "i=0";
-			//document.cookie = "token=";
+			document.cookie = "token=";
 			
 			console.log("Token: "+getCookie("token"));
 			
