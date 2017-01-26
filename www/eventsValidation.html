@@ -72,7 +72,7 @@
 
 		<!-- Body -->
 		<div ng-app="app" >
-			<div class="main">
+			<div class="main-events-validation">
 				<h1 class="title">Validar eventos</h1>
 				
 					<form ng-submit="formEventsValidation()" ng-controller="formEventsController" method="post">
@@ -99,6 +99,10 @@
 					</form>
 				
 			</div>
+			<div class="forbidden">
+				<p>No tienes permisos para acceder está página.</p>
+				<button type="button" class="btn btn-success" onclick="loginRedirect();">Acceder</button>
+			</div>
 		</div>
 		
 		<script>
@@ -108,17 +112,26 @@
 			var apiList = 'http://vps265793.ovh.net:3000/api/event/notposted/';
 			var apiMunicipio = 'http://vps265793.ovh.net:3000/api/town/';
 			var apiEspacio = 'http://vps265793.ovh.net:3000/api/culturalspace/';
-			
+			var i = 0;
 			var cookie =  document.cookie;
 			//document.cookie = "i=0";
+			//document.cookie = "token=";
 			
 			console.log("Token: "+getCookie("token"));
+			
+			if ((getCookie("token") == null) || (getCookie("token") == "")){
+				$('.forbidden').css('display', 'block');
+				$('.main-events-validation').css('display', 'none');
+			}else{
+				$('.forbidden').css('display', 'none');
+				$('.main-events-validation').css('display', 'block');
+			}
 			
 			var app = angular.module('app', []);
 			app.controller('formEventsController', function($scope, $http) {
 				
 				$http.get(apiList).then(function(response) {
-					var i = parseInt(getCookie("i"));
+					i = parseInt(getCookie("i"));
 					var event = response.data.data;
 					$scope.titulo = event[i].titulo;
 					$http.get(apiEspacio+event[i].espacio).then(function(responseE) {
@@ -167,6 +180,10 @@
 				var index = parseInt(getCookie("i")) + 1;
 				document.cookie = "i="+index;
 				location.reload(true);
+			}
+			
+			function loginRedirect(){
+				window.location = 'login.html';
 			}
 			
 		</script>
