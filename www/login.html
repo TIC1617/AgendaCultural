@@ -50,7 +50,7 @@
 
 			<div class="header">
 				<!-- <a href="#" class="toggle-btn"><span class="ion-navicon-round"></span></a> -->
-				<a href="javascript:history.go(-1)"><i class="fa fa-chevron-left"></i></a>
+				<a href="index.html"><i class="fa fa-chevron-left"></i></a>
 				<!-- <a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a> -->
 				<ul class="dropdown-menu dropdown-menu-right">
 					<!-- <li><a href="login.html">acceso</a></li> -->
@@ -91,9 +91,16 @@
 					<div class="error-login-msg">
 						<p>Error usuario o contraseña incorrecta.</p>
 					</div>
-					<button type="submit" class="btn btn-success" style="float: right; margin-left: 5px;">Acceder</button>
+					<button type="submit" class="btn btn-success" style="width: 100%;">Acceder</button>
 				</form>
+			
 			</div>
+			
+			<div class="close-session">
+				<p>Estás logueado como un usuario validador</p>
+				<p><a href="#" onclick="closeSession();">Cerrar sesión</a></p>
+			</div>
+		
 		</div>
 		
 		<script>
@@ -101,6 +108,14 @@
 			var api = 'http://vps265793.ovh.net:3000/protectedapi/authenticate/';
 			
 			var cookie =  document.cookie;
+			
+			if ((getCookie("token") == null) || (getCookie("token") == "")){
+				$('.login').css('display', 'block');
+				$('.close-session').css('display', 'none');
+			}else{
+				$('.login').css('display', 'none');
+				$('.close-session').css('display', 'block');
+			}
 
 			app.controller('formController', ['$scope', '$http', function($scope, $http) {
 				$scope.formLoginValidation = function() {
@@ -126,6 +141,11 @@
 					});
 				}
 			}]);
+			
+			function closeSession(){
+				document.cookie = "token=";
+				location.reload(true);
+			}
 		</script>
 	</body>
 </html>
