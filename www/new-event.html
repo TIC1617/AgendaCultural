@@ -244,12 +244,9 @@
         // Submit new event
         $scope.submitEvent = function () {
           var data = {
-            "id": 30000,
-            "tipoagenda": 1,
             "fecini": getDate($scope.dateStart),
             "fecfin": getDate($scope.dateEnd),
             "dias": elapsedDays($scope.dateStart, $scope.dateEnd),
-            "tipo": 3,
             "isla": $scope.island,
             "municipio": $scope.town,
             "espacio": $scope.space,
@@ -261,7 +258,6 @@
             "minuto": $scope.timeStart.split(':')[1],
             "imagen": $scope.image,
             "masinfo": $scope.url = $scope.url || "",
-            "tipomasinfo": "U",
             "usuario": "krusty",
             "fechor": new Date().toISOString().split('.')[0]
           };
