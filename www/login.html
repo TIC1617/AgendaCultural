@@ -113,6 +113,7 @@
 						if (response.status == "success"){
 							$('.error-login-msg').css("display","none");
 							document.cookie = "token="+response.token;
+							document.cookie = "i="+0;
 							window.location.href = "eventsValidation.html";
 						}else{
 							console.log(response);
