@@ -75,3 +75,13 @@ h2 {
  height: 400px;
  width: 100%;
 }
+
+.error-login-msg {
+	display: none;
+	text-align: center;
+	color: red;
+}
+
+.main-login {
+	display: block;
+}

@@ -14,15 +14,15 @@
 
 		<!-- Scripts -->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-		<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 		<script type="text/javascript" src="js/global.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 
-		<title>Validación de eventos</title>
+		<title>Acceso de usuarios</title>
 	</head>
 	<body>
+		
 		<!-- Header -->
 		<div class="wrap">
 			<div class="toggle-overlay">
@@ -71,22 +71,60 @@
 		</div>
 
 		<!-- Body -->
-		<div class="title">
-			<h1>Acceso de usuarios</h1>
-		</div>
-
-		<div class="login">
-			<div class="form-group">
-				<label class="control-label" for="url">Usuario:</label>
-				<input type="text" class="form-control" required/>
+		<div ng-app="app" class="main-login">
+			<div class="title">
+				<h1>Acceso de usuarios</h1>
 			</div>
 
-			<div class="form-group">
-				<label class="control-label" for="url">Contraseña:</label>
-				<input type="password" class="form-control" required/>
-			</div>
+			<div class="login">
+				<form ng-submit="formLoginValidation()" ng-controller="formController" method="post">
+					<div class="form-group">
+						<label class="control-label" for="url">Usuario:</label>
+						<input type="text" class="form-control" id="input_user" ng-model="user" required/>
+					</div>
 
-			<button type="submit" class="btn btn-success" style="float: right; margin-left: 5px;" onclick="formLoginValidation();">Acceder</button>
+					<div class="form-group">
+						<label class="control-label" for="url">Contraseña:</label>
+						<input type="password" class="form-control" id="input_pass" ng-model="pass" required/>
+					</div>
+
+					<div class="error-login-msg">
+						<p>Error usuario o contraseña incorrecta.</p>
+					</div>
+					<button type="submit" class="btn btn-success" style="float: right; margin-left: 5px;">Acceder</button>
+				</form>
+			</div>
 		</div>
+		
+		<script>
+			var app = angular.module('app', []);
+			var api = 'http://vps265793.ovh.net:3000/protectedapi/authenticate/';
+			
+			var cookie =  document.cookie;
+
+			app.controller('formController', ['$scope', '$http', function($scope, $http) {
+				$scope.formLoginValidation = function() {
+					var data = JSON.stringify({
+						"usuario" : $scope.user,
+						"password" : $scope.pass
+					});
+					$http.post(api, data).
+					success(function(response) {
+						if (response.status == "success"){
+							$('.error-login-msg').css("display","none");
+							document.cookie = "token="+response.token;
+							window.location.href = "eventsValidation.html";
+						}else{
+							console.log(response);
+							$('#input_user').val('');
+							$('#input_pass').val('');
+							$('.error-login-msg').css("display","block");
+						}
+					}).error(function(response) {
+						console.log(response);
+					});
+				}
+			}]);
+		</script>
 	</body>
 </html>
