@@ -90,7 +90,7 @@
 									<p><strong>[+info] </strong><a href="{{masinfo}}" target="_blank">{{masinfo}}</a></p>
 								</div>
 								<button type="submit" class="btn btn-success" style="float: right; margin-left: 5px;">Validar</button>
-								<button type="button" class="btn btn-danger" style="float: right;" onclick="nextEvent();">Siguiente</button>
+								<button type="button" class="btn btn-danger" style="float: right;" onclick="nextEvent();">Rechazar</button>
 								<br>
 							</div>
 						</div>
@@ -106,15 +106,17 @@
 			var apiList = 'http://vps265793.ovh.net:3000/api/event/notposted/';
 			var apiMunicipio = 'http://vps265793.ovh.net:3000/api/town/';
 			var apiEspacio = 'http://vps265793.ovh.net:3000/api/culturalspace/';
-			var i = 0;
 			
 			var cookie =  document.cookie;
+			//document.cookie = "i=0";
+			
 			console.log("Token: "+getCookie("token"));
 			
 			var app = angular.module('app', []);
 			app.controller('formEventsController', function($scope, $http) {
-				 
+				
 				$http.get(apiList).then(function(response) {
+					var i = parseInt(getCookie("i"));
 					var event = response.data.data;
 					$scope.titulo = event[i].titulo;
 					$http.get(apiEspacio+event[i].espacio).then(function(responseE) {
@@ -127,7 +129,7 @@
 					$scope.desc = event[i].descripcion;
 					$http.get(apiMunicipio+event[i].municipio).then(function(responseM) {
 						var municip = responseM.data.data;
-						$scope.municipio = municip[i].desmuni;
+						$scope.municipio = municip[0].desmuni;
 					});	
 					$scope.fechaini = event[i].fecini;
 					$scope.fechafin = event[i].fecfin;
@@ -151,6 +153,7 @@
 							
 						}).error(function(response) {
 							console.log("Error: "+response);
+							
 						});
 							
 					});
@@ -159,7 +162,9 @@
 			});
 			
 			function nextEvent(){
-				i = i + 1;
+				var index = parseInt(getCookie("i")) + 1;
+				document.cookie = "i="+index;
+				location.reload(true);
 			}
 			
 		</script>
