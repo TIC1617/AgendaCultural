@@ -108,7 +108,7 @@
 			var apiList = 'http://vps265793.ovh.net:3000/api/event/notposted/';
 			var apiMunicipio = 'http://vps265793.ovh.net:3000/api/town/';
 			var apiEspacio = 'http://vps265793.ovh.net:3000/api/culturalspace/';
-			
+			var i = 0;
 			var cookie =  document.cookie;
 			//document.cookie = "i=0";
 			
@@ -118,7 +118,7 @@
 			app.controller('formEventsController', function($scope, $http) {
 				
 				$http.get(apiList).then(function(response) {
-					var i = parseInt(getCookie("i"));
+					i = parseInt(getCookie("i"));
 					var event = response.data.data;
 					$scope.titulo = event[i].titulo;
 					$http.get(apiEspacio+event[i].espacio).then(function(responseE) {
