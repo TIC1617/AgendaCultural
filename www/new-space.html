@@ -167,11 +167,13 @@
                 <label class="control-label" for="name">Twitter del espacio cultural:</label>
                 <input type="url" ng-model="twitter" class="form-control" placeholder="Introduce la página de Twitter del espacio">
               </div>
+              <div class="form-group">
+                <button type="submit" class="btn-primary btn-lg btn-block">Crear</button>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
           </form>
           <script>
-            URLNEWSPACE = "";
+            URLNEWSPACE = "http://vps265793.ovh.net:3000/api/";
             var app = angular.module("newSpace", []);
 
             app.controller('getData', ['$scope', '$http', function ($scope, $http) {

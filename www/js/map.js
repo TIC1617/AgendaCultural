@@ -1,4 +1,6 @@
-function changeImgOrMap(name){
+function changeImgOrMap(name, lat, lng){
+
+  console.log(name);
 
   if(document.getElementById(name).classList.contains('vis')){
 
@@ -9,6 +11,7 @@ function changeImgOrMap(name){
     document.getElementById("map" + name).classList.add('mapa');
     document.getElementById("map" + name).classList.add('vis');
 
+    setLocalization("map" + name, lat, lng);
   }else{
     document.getElementById(name).classList.remove('ocul');
     document.getElementById(name).classList.add('vis');
