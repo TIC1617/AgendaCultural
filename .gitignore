@@ -7,3 +7,6 @@
 
 # res
 resources/signing
+
+# api links
+www/js/api.js
