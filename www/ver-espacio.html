@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/map.css">
   <script type="text/javascript" src="js/map.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -126,7 +127,6 @@
 		</div>
 		<script>
 			var app = angular.module('app', []);
-			var api = "/api/"
 			app.controller('ctrl', function($scope, $http) {
 
 				$scope.selectIsland = function () {
@@ -135,7 +135,7 @@
 					$scope.spaces = [];
 					$scope.town = undefined;
 
-					$http.get(api + "towns/island/" + $scope.island).
+					$http.get(apiurl + "towns/island/" + $scope.island).
 					success(function(response) {
 						response.data.forEach(function(x) {
 							$scope.towns.push({id: x.id, name: x.desmuni});
@@ -154,7 +154,7 @@
           if ($scope.town == null) return;
           $scope.spaces = [];
 
-          $http.get(api + "culturalspace/town/" + $scope.town).
+          $http.get(apiurl + "culturalspace/town/" + $scope.town).
           success(function(response) {
             response.data.forEach(function(x) {
               $scope.spaces.push({id: x.id, name: x.denominacion});

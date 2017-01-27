@@ -10,6 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script type="text/javascript" src="js/api.js"></script>
 
 	<!-- Styles -->
 	<link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
@@ -87,9 +88,9 @@
 				<div class="container-fluid">
 					<div class="row event">
 						<div id="PlaceImg" class="col-md-12 col-sm-12 col-xs-12">
-							<img class="itemEvent" id="Image" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/oficinadeapoyo/.content/galeria/espacios/{{img}}"
-							onClick="changeImgOrMap('Image')" alt="No cargó la imagen">
-							<div class="mapEvent" id="mapImage" onClick="changeImgOrMap('Image')">
+							<img class="itemEvent" id="Image" src="{{img}}"
+							ng-click="updateMap()" alt="No cargó la imagen">
+							<div class="mapEvent" id="mapImage" ng-click="updateMap()">
 							</div>
 							<p style="margin-left: 14%;"><strong>Pulsa</strong> en la foto para ver mapa.</p>
 							<script>
@@ -203,7 +204,7 @@
 		      get[tmp[0]] = unescape(decodeURI(tmp[1]));
 		   	}
 
-				$http.get('/api/culturalspace/' + get.id)
+				$http.get(apiurl + 'culturalspace/' + get.id)
 			  .then(function(response) {
 						event = response.data.data;
 
@@ -217,7 +218,7 @@
 						$scope.facebook = event.facebook;
 						$scope.twiter = event.twitter;
 						$scope.youtube = event.youtube;
-						$scope.img = event.imag01;
+						$scope.img = imgcultural + event.imag01;
 						$scope.seating = event.aforo;
 						$scope.princuse = event.usoprincipal;
 						$scope.facilities = event.instalaciones;
@@ -226,6 +227,11 @@
 						$scope.shedule = event.horario;
 
 				});
+
+				$scope.updateMap = function () {
+					changeImgOrMap('Image', $scope.lat, $scope.long);
+				}
+
 			});
 		</script>
 	</body>
