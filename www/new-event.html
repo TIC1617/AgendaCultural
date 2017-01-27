@@ -23,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="js/index.js"></script>
+    <script type="text/javascript" src="js/api.js"></script>
   </head>
 
   <body>
@@ -204,7 +205,6 @@
 
     <!--  AngularJS -->
     <script type="text/javascript">
-      var api = "http://localhost:3000/api/";
       var app = angular.module("newEvent", []);
 
       app.controller('getData', ['$scope', '$http', function ($scope, $http) {
@@ -215,7 +215,7 @@
           $scope.towns = [];
           $scope.spaces = [];
           $scope.town = undefined;
-          $http.get(api + "towns/island/" + $scope.island).
+          $http.get(apiurl + "towns/island/" + $scope.island).
           success(function(response) {
             response.data.forEach(function(x) {
               $scope.towns.push({id: x.id, name: x.desmuni});
@@ -230,7 +230,7 @@
         $scope.selectTown = function () {
           if ($scope.town == null) return;
           $scope.spaces = [];
-          $http.get(api + "culturalspace/town/" + $scope.town).
+          $http.get(apiurl + "culturalspace/town/" + $scope.town).
           success(function(response) {
             response.data.forEach(function(x) {
               $scope.spaces.push({id: x.id, name: x.denominacion});
@@ -262,7 +262,7 @@
             "fechor": new Date().toISOString().split('.')[0]
           };
 
-          $http.post(api + "event", data).
+          $http.post(apiurl + "event", data).
           success(function(response) {
             console.log("Created new event!");
             window.location.href = 'index.html';

@@ -3,7 +3,7 @@ function formEventsValidation(validate){
 		var request = confirm("¿Estás seguro?");
 		if (request == true){
 			alert("Evento rechazado, el creador del evento recibirá un email con esta acción");
-			location.reload(); 
+			location.reload();
 		}
 	}else{
 		$.ajax({
@@ -12,7 +12,7 @@ function formEventsValidation(validate){
 			data: {action : 'eventsValidation'},
 			success: function(data) {
 				alert(data);
-				location.reload(); 
+				location.reload();
 			}
 		});
 	}
@@ -40,7 +40,7 @@ function setCookie(cname, cvalue, exdays) {
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}  
+}
 
 function checkCookie() {
     var username = getCookie("username");
@@ -52,5 +52,4 @@ function checkCookie() {
             setCookie("username", username, 365);
         }
     }
-} 
-
+}

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/new-space.css">
 
     <script src="js/index.js"></script>
+    <script type="text/javascript" src="js/api.js"></script>
   </head>
   <body>
     <div class="wrap">
@@ -173,7 +174,6 @@
             </div>
           </form>
           <script>
-            URLNEWSPACE = "http://vps265793.ovh.net:3000/api/";
             var app = angular.module("newSpace", []);
 
             app.controller('getData', ['$scope', '$http', function ($scope, $http) {
@@ -184,7 +184,7 @@
                 $scope.towns = [];
                 $scope.town = undefined;
 
-                $http.get(URLNEWSPACE + "towns/island/" + $scope.island)
+                $http.get(apiurl + "towns/island/" + $scope.island)
                 .success(function(response) {
                   response.data.forEach(function(x) {
                   $scope.towns.push({id: x.id, name: x.desmuni});
@@ -217,7 +217,7 @@
                 "lng": $scope.latitude,
               };
 
-              $http.post(URLNEWSPACE + "space", data)
+              $http.post(apiurl + "space", data)
               .success(function(response) {
                 window.location.href = 'index.html';
               }).error(function(response) {

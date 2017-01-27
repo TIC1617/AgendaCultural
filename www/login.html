@@ -18,11 +18,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 		<script type="text/javascript" src="js/global.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/api.js"></script>
 
 		<title>Acceso de usuarios</title>
 	</head>
 	<body>
-		
+
 		<!-- Header -->
 		<div class="wrap">
 			<div class="toggle-overlay">
@@ -93,22 +94,22 @@
 					</div>
 					<button type="submit" class="btn btn-success" style="width: 100%;">Acceder</button>
 				</form>
-			
+
 			</div>
-			
+
 			<div class="close-session">
 				<p>Estás logueado como un usuario validador</p>
 				<p><a href="#" onclick="closeSession();">Cerrar sesión</a></p>
 			</div>
-		
+
 		</div>
-		
+
 		<script>
 			var app = angular.module('app', []);
-			var api = 'http://vps265793.ovh.net:3000/protectedapi/authenticate/';
-			
+			var api = apiprot + 'authenticate/';
+
 			var cookie =  document.cookie;
-			
+
 			if ((getCookie("token") == null) || (getCookie("token") == "")){
 				$('.login').css('display', 'block');
 				$('.close-session').css('display', 'none');
@@ -141,7 +142,7 @@
 					});
 				}
 			}]);
-			
+
 			function closeSession(){
 				document.cookie = "token=";
 				location.reload(true);

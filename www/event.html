@@ -27,6 +27,7 @@
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
 	<title>Evento</title>
@@ -88,7 +89,7 @@
 				<div class="container-fluid">
 					<div class="row event">
 						<div class="col-md-12 col-sm-12 col-xs-12 ">
-							<img class="itemEvent" id="Image" src="http://www.gobiernodecanarias.com/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/{{image}}"
+							<img class="itemEvent" id="Image" src="{{image}}"
 							ng-click="updateMap()" alt="No cargó la imagen">
 							<div class="mapEvent" id="mapImage" ng-click="updateMap()">
 							</div>
@@ -137,14 +138,14 @@
 					get[tmp[0]] = unescape(decodeURI(tmp[1]));
 				}
 
-				var promise = $http.get(URLAPI + 'event/' + get.id).then(function(response1) {
+				var promise = $http.get(apiurl + 'event/' + get.id).then(function(response1) {
 					event = response1.data.data;
 
 					$scope.title = event.titulo;
 					$scope.description = event.descripcion;
 					idTown = event.municipio;
 					$scope.place = event.lugar;
-					$scope.image = event.imagen;
+					$scope.image = imgevent + event.imagen;
 					$scope.urlevent = event.masinfo;
 					$scope.idspace = event.espacio;
 
