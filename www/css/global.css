@@ -81,9 +81,13 @@ h2 {
 	text-align: center;
 	color: red;
 }
-.forbidden{
+.forbidden, .empty{
 	margin-top: 45%;
 	vertical-align: middle;
+}
+.empty {
+	display: none;
+	text-align: center;
 }
 .main-login, .main-events-validation {
 	display: block;
