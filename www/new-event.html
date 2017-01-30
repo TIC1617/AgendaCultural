@@ -24,6 +24,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="js/index.js"></script>
     <script type="text/javascript" src="js/api.js"></script>
+    <script type="text/javascript" src="js/angular-flash.min.js"></script>
   </head>
 
   <body>
@@ -73,6 +74,7 @@
 
       <div ng-app="newEvent" ng-controller="getData" id="new-event">
 			  <h1 class="title">Crear evento</h1>
+        <flash-message duration="3000" show-close="true"></flash-message>
         <div id="event-creation" class="col-md-12-block">
           <form ng-submit="submitEvent()" method="post">
 
@@ -205,9 +207,9 @@
 
     <!--  AngularJS -->
     <script type="text/javascript">
-      var app = angular.module("newEvent", []);
+      var app = angular.module("newEvent", ['ngFlash']);
 
-      app.controller('getData', ['$scope', '$http', function ($scope, $http) {
+      app.controller('getData', ['$scope', '$http', 'Flash', function ($scope, $http, Flash) {
 
         // Get Towns by Island selection list
         $scope.selectIsland = function () {
@@ -264,9 +266,14 @@
 
           $http.post(apiurl + "event", data).
           success(function(response) {
-            console.log("Created new event!");
-            window.location.href = 'index.html';
+            Flash.create('success', 'El evento se ha creado correctamente');
+            $('html,body').scrollTop(0);
+            window.setTimeout(function() {
+              window.location.href = 'index.html';
+            }, 3000);
           }).error(function(response) {
+            Flash.create('danger', 'Ha habido un error al crear el evento');
+            $('html,body').scrollTop(0);
             console.log("Failed to create new event: " + response);
           });
         }

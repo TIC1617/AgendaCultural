@@ -25,6 +25,7 @@
 
     <script src="js/index.js"></script>
     <script type="text/javascript" src="js/api.js"></script>
+    <script type="text/javascript" src="js/angular-flash.min.js"></script>
   </head>
   <body>
     <div class="wrap">
@@ -74,6 +75,7 @@
       <div id="main">
         <div ng-app="newSpace" ng-controller="getData" id="new-space">
           <h1>Crear un nuevo espacio cultural</h1>
+          <flash-message duration="3000" show-close="true"></flash-message>
           <form ng-submit="submitEvent()" method="post">
             <div class="form-group">
               <div class="form-group">
@@ -174,9 +176,9 @@
             </div>
           </form>
           <script>
-            var app = angular.module("newSpace", []);
+            var app = angular.module("newSpace", ['ngFlash']);
 
-            app.controller('getData', ['$scope', '$http', function ($scope, $http) {
+            app.controller('getData', ['$scope', '$http', 'Flash', function ($scope, $http, Flash) {
               $scope.message = "";
               // Get Towns by Island selection list
               $scope.selectIsland = function () {
@@ -217,11 +219,17 @@
                 "lng": $scope.latitude,
               };
 
-              $http.post(apiurl + "space", data)
-              .success(function(response) {
-                window.location.href = 'index.html';
+              $http.post(apiurl + "space", data).
+              success(function(response) {
+                Flash.create('success', 'El espacio cultural se ha creado correctamente');
+                $('html,body').scrollTop(0);
+                window.setTimeout(function() {
+                  window.location.href = 'index.html';
+                }, 3000);
               }).error(function(response) {
-
+                Flash.create('danger', 'Ha habido un error al crear el espacio cultural');
+                $('html,body').scrollTop(0);
+                console.log("Failed to create new cultural space: " + response);
               });
             }
           }]);
