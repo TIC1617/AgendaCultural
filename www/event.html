@@ -159,13 +159,13 @@
 
 					idSpace = event.espacio;
 
-					return $http.get(URLAPI + '/town/' + idTown);
+					return $http.get(apiurl + '/town/' + idTown);
 				}).then(function(response2) {
 					town = response2.data.data;
 
 					$scope.townName = town[0].desmuni;
 
-					return $http.get(URLAPI + '/culturalspace/' + idSpace);
+					return $http.get(apiurl + '/culturalspace/' + idSpace);
 
 				}).then(function(response3) {
 					place = response3.data.data;
