@@ -122,8 +122,6 @@
 			
 			var i = parseInt(window.localStorage.getItem("i"));
 			var token = window.localStorage.getItem("token");
-			
-			//var cookie =  document.cookie;
 
 			console.log("Token: "+token);
 
@@ -164,7 +162,12 @@
 						$scope.masinfo = event[i].masinfo;
 					
 						$('.empty').css('display', 'none');
-						$('.main-events-validation').css('display', 'block');
+						if ((token == null) || (token == "")){
+							$('.main-events-validation').css('display', 'none');
+						}else{
+							$('.main-events-validation').css('display', 'block');
+						}
+						
 					}
 				});
 
