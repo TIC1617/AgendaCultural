@@ -80,7 +80,7 @@
 						<div class=" marginbot100">
 							<div class="form">
 								<div class="img">
-									<img src="{{imagen}}">
+									<img src="http://www.gobiernodecanarias.com/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/{{imagen}}">
 								</div>
 								<div class="description">
 									<h3>{{titulo}}</h3>
@@ -103,24 +103,31 @@
 			<div class="forbidden">
 				<p>No tienes permisos para acceder está página.</p>
 				<button type="button" class="btn btn-success" onclick="loginRedirect();">Acceder</button>
+			</div>			
+			<div class="empty">
+				<p>No hay más eventos pendientes de validar.</p>
+				<button type="button" class="btn btn-danger" onclick="indexRedirect();">Salir</button>
 			</div>
 		</div>
 
 		<script>
 
+			var apiurl = 'http://vps265793.ovh.net:3000/api/';
 			var app = angular.module('app', []);
-			var apiValidate = apiprot + 'validate/';
+			
+			var apiValidate = 'http://vps265793.ovh.net:3000/protectedapi/validate/';
 			var apiList = apiurl + 'event/notposted/';
 			var apiMunicipio = apiurl + 'town/';
 			var apiEspacio = apiurl + 'culturalspace/';
-			var i = 0;
-			var cookie =  document.cookie;
-			//document.cookie = "i=0";
-			//document.cookie = "token=";
+			
+			var i = parseInt(window.localStorage.getItem("i"));
+			var token = window.localStorage.getItem("token");
+			
+			//var cookie =  document.cookie;
 
-			console.log("Token: "+getCookie("token"));
+			console.log("Token: "+token);
 
-			if ((getCookie("token") == null) || (getCookie("token") == "")){
+			if ((token == null) || (token == "")){
 				$('.forbidden').css('display', 'block');
 				$('.main-events-validation').css('display', 'none');
 			}else{
@@ -130,37 +137,47 @@
 
 			var app = angular.module('app', []);
 			app.controller('formEventsController', function($scope, $http) {
-
+				
 				$http.get(apiList).then(function(response) {
-					i = parseInt(getCookie("i"));
+					i = parseInt(window.localStorage.getItem("i"));
 					var event = response.data.data;
-					$scope.titulo = event[i].titulo;
-					$http.get(apiEspacio+event[i].espacio).then(function(responseE) {
-						var espCult = responseE.data.data;
-						$scope.espacio = espCult.denominacion;
-						$scope.lugar = espCult.direccion;
-					});
-					$scope.imagen = imgevent + event[i].imagen;
-					console.log($scope.imagen);
-					//$scope.lugar = event[0].lugar;
-					$scope.desc = event[i].descripcion;
-					$http.get(apiMunicipio+event[i].municipio).then(function(responseM) {
-						var municip = responseM.data.data;
-						$scope.municipio = municip[0].desmuni;
-					});
-					$scope.fechaini = event[i].fecini;
-					$scope.fechafin = event[i].fecfin;
-					$scope.masinfo = event[i].masinfo;
+					
+					if (typeof event[i] === 'undefined'){
+						$('.empty').css('display', 'block');
+						$('.main-events-validation').css('display', 'none');
+					}else{
+						$scope.titulo = event[i].titulo;
+						$http.get(apiEspacio+event[i].espacio).then(function(responseE) {
+							var espCult = responseE.data.data;
+							$scope.espacio = espCult.denominacion;
+							$scope.lugar = espCult.direccion;
+						});
+						$scope.imagen = event[i].imagen;
+						console.log(event[i].imagen);
+						$scope.desc = event[i].descripcion;
+						$http.get(apiMunicipio+event[i].municipio).then(function(responseM) {
+							var municip = responseM.data.data;
+							$scope.municipio = municip[0].desmuni;
+						});
+						$scope.fechaini = event[i].fecini;
+						$scope.fechafin = event[i].fecfin;
+						$scope.masinfo = event[i].masinfo;
+					
+						$('.empty').css('display', 'none');
+						$('.main-events-validation').css('display', 'block');
+					}
 				});
 
 				$scope.formEventsValidation = function() {
+					
 					var idEvent = "";
+					i = parseInt(window.localStorage.getItem("i"));
 					$http.get(apiList).then(function(response) {
 						var event = response.data.data;
 						idEvent = event[i].id;
 
 						var datos = JSON.stringify({
-							"token" : getCookie("token"),
+							"token" : window.localStorage.getItem("token"),
 						});
 						$http.post(apiValidate+idEvent, datos).
 						success(function(response) {
@@ -174,18 +191,25 @@
 						});
 
 					});
-
+					
 				}
+				
 			});
 
 			function nextEvent(){
-				var index = parseInt(getCookie("i")) + 1;
-				document.cookie = "i="+index;
+				var index = parseInt(window.localStorage.getItem("i")) + 1;
+				window.localStorage.setItem("i", index);
+				//document.cookie = "i="+index;
 				location.reload(true);
 			}
 
 			function loginRedirect(){
 				window.location = 'login.html';
+			}			
+			
+			function indexRedirect(){
+				window.localStorage.setItem("i", 0);
+				window.location = 'index.html';
 			}
 
 		</script>
