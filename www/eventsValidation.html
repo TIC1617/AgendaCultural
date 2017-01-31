@@ -55,7 +55,7 @@
 				<a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
 				<ul class="dropdown-menu dropdown-menu-right">
 					<li><a href="login.html">Acceso</a></li>
-					<li><a href="#">Salir</a></li>
+					<li><a href="#" onclick="closeSession();">Salir</a></li>
 				</ul>
 				<a href="#" class="all"><span class="ion-android-search"></span></a>
 			</div><!--header//-->
@@ -104,7 +104,7 @@
 			<div class="forbidden">
 				<p>No tienes permisos para acceder está página.</p>
 				<button type="button" class="btn btn-success" onclick="loginRedirect();">Acceder</button>
-			</div>			
+			</div>
 			<div class="empty">
 				<p>No hay más eventos pendientes de validar.</p>
 				<button type="button" class="btn btn-danger" onclick="indexRedirect();">Salir</button>
@@ -115,12 +115,12 @@
 
 			var apiurl = 'http://vps265793.ovh.net:3000/api/';
 			var app = angular.module('app', []);
-			
+
 			var apiValidate = 'http://vps265793.ovh.net:3000/protectedapi/validate/';
 			var apiList = apiurl + 'event/notposted/';
 			var apiMunicipio = apiurl + 'town/';
 			var apiEspacio = apiurl + 'culturalspace/';
-			
+
 			var i = parseInt(window.localStorage.getItem("i"));
 			var token = window.localStorage.getItem("token");
 
@@ -136,11 +136,11 @@
 
 			var app = angular.module('app', []);
 			app.controller('formEventsController', function($scope, $http) {
-				
+
 				$http.get(apiList).then(function(response) {
 					i = parseInt(window.localStorage.getItem("i"));
 					var event = response.data.data;
-					
+
 					if (typeof event[i] === 'undefined'){
 						$('.empty').css('display', 'block');
 						$('.main-events-validation').css('display', 'none');
@@ -161,19 +161,19 @@
 						$scope.fechaini = event[i].fecini;
 						$scope.fechafin = event[i].fecfin;
 						$scope.masinfo = event[i].masinfo;
-					
+
 						$('.empty').css('display', 'none');
 						if ((token == null) || (token == "")){
 							$('.main-events-validation').css('display', 'none');
 						}else{
 							$('.main-events-validation').css('display', 'block');
 						}
-						
+
 					}
 				});
 
 				$scope.formEventsValidation = function() {
-					
+
 					var idEvent = "";
 					i = parseInt(window.localStorage.getItem("i"));
 					$http.get(apiList).then(function(response) {
@@ -195,9 +195,9 @@
 						});
 
 					});
-					
+
 				}
-				
+
 			});
 
 			function nextEvent(){
@@ -209,8 +209,8 @@
 
 			function loginRedirect(){
 				window.location = 'login.html';
-			}			
-			
+			}
+
 			function indexRedirect(){
 				window.localStorage.setItem("i", 0);
 				window.location = 'index.html';

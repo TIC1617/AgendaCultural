@@ -55,7 +55,7 @@
 				<!-- <a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a> -->
 				<ul class="dropdown-menu dropdown-menu-right">
 					<!-- <li><a href="login.html">acceso</a></li> -->
-					<li><a href="#">salir</a></li>
+					<li><a href="#" onclick="closeSession();">Salir</a></li>
 				</ul>
 				<!-- <a href="#" class="all"><span class="ion-android-search"></span></a> -->
 			</div><!--header//-->
@@ -129,7 +129,7 @@
 					success(function(response) {
 						if (response.status == "success"){
 							$('.error-login-msg').css("display","none");
-							//document.cookie = "token="+response.token;				
+							//document.cookie = "token="+response.token;
 							window.localStorage.setItem("token", response.token);
 							window.localStorage.setItem("i", 0);
 							window.location.href = "eventsValidation.html";
@@ -144,12 +144,6 @@
 					});
 				}
 			}]);
-
-			function closeSession(){
-				window.localStorage.setItem("token", "");
-				//document.cookie = "token=";
-				location.reload(true);
-			}
 		</script>
 	</body>
 </html>
