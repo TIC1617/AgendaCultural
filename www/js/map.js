@@ -1,7 +1,4 @@
 function changeImgOrMap(name, lat, lng){
-
-  console.log(name);
-
   if(document.getElementById(name).classList.contains('vis')){
 
     document.getElementById(name).classList.remove('vis');

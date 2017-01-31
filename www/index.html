@@ -1,142 +1,146 @@
 <!DOCTYPE html>
-    <html >
-      <head>
-        <meta charset="UTF-8">
-        <title>AgendaCultural</title>
+<html>
+<head>
+	<meta charset="utf-8" />
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/map.css">
+  <script type="text/javascript" src="js/map.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
 
-        <link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
-        <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400'>
-      	<link rel="stylesheet" href='http://fontawesome.io/assets/font-awesome/css/font-awesome.css'>
-        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<!-- Styles -->
+	<link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+	<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400'>
+	<link rel="stylesheet" href='http://fontawesome.io/assets/font-awesome/css/font-awesome.css'>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/style.css">
 
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/global.css">
-        <script type="text/javascript" src="js/api.js"></script>
-      </head>
-  <body>
-	 <div class="wrap">
-	 <div class="toggle-overlay"></div>
+
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/eventlist.js"></script>
+
+	<title>Espacio</title>
+</head>
+<body>
+	<div ng-app="app" ng-controller="ctrl" />
+		<!-- Header -->
+		<div class="wrap">
+			<div class="toggle-overlay">
+			</div>
 			<div class="left">
 				<div class="left-head">
 					<div class="top-bar">
-					<div class="overlay"></div>
+						<div class="overlay">
+						</div>
 						<a class="search" href="#"><span class="ion-search"></span></a>
 						<a class="setting" href="#"><span class="ion-android-more-vertical"></span></a>
 					</div>
 					<div class="user-bar">
-            <img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
+						<img src="https://www.gobiernodecanarias.org/gcc/img/logos/logo.gif">
 						<p class="name">AgendaCultural</p>
 					</div>
 				</div>
 				<div class="menu-list">
-          <a href="locationFiltering.html" title="home">Cerca de ti</a>
-          <a href="index.html" title="home">Eventos</a>
-          <a href="ver-espacio.html" title="home">Espacios</a>
-          <a href="eventsValidation.html" title="home">Validar Eventos</a>
+					<a href="index.html" title="home">Eventos</a>
+					<a href="ver-espacio.html" title="home">Espacios</a>
+					<a href="eventsValidation.html" title="home">Validar Eventos</a>
 					<a href="new-event.html" title="home">Crear Eventos</a>
 				</div>
 			</div><!--Left//-->
 
 			<div class="header">
 				<a href="#" class="toggle-btn"><span class="ion-navicon-round"></span></a>
-        <a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="login.html">Acceso</a></li>
-            <li><a href="#">Salir</a></li>
-          </ul>
-  			<a href="#" class="all"><span class="ion-android-search"></span></a>
+				<a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li><a href="login.html">Acceso</a></li>
+					<li><a href="#">Salir</a></li>
+				</ul>
+				<a href="#" class="all"><span class="ion-android-search"></span></a>
 			</div><!--header//-->
 			<div class="header-All">
 				<a class="active" href="#">
-          <form>
-            <button class="btn" type="submit">
-              <i class="glyphicon glyphicon-search"></i>
-            </button>
-            <input type="text" class="txt" placeholder="Search..." />
-          </form>
-        </a>
+					<form>
+						<button class="btn" type="submit">
+						<i class="fa fa-search"></i>
+						</button>
+						<input type="text" class="txt" placeholder="Search..." />
+					</form>
+				</a>
 			</div>
-      <h2> EVENTOS PRÓXIMOS </h2>
-      <div id="catlist">
+		</div>
+			<div id="main">
+				<div class="title col-md-7 col-sm-12 col-xs-12">
+					<h1> Últimos Eventos<h1>
+				</div>
+				<div class="container-fluid">
+						<div id="evenlist"class="container-fluid col-md-12 col-sm-12 col-xs-12 ">
+              <div ng-repeat="x in eventos">
+                <div id="EventItm" class="col-md-12 col-sm-12 col-xs-12">
+                  <div id="EvImg" style="margin-top: 8%" class="col-md-5 col-sm-5 col-xs-5">
+                    <a href="#"><img style="width: 250px;" class="img-thumbnail" src="http://www.gobiernodecanarias.com/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/{{x.imagen}}" alt="" data-rel="external"/></a>
+                  </div>
+                  <div id="EvInfo" style="margin-top: 5%" class="col-md-7 col-sm-7 col-xs-7">
+                      <p class="" style="font-size:18px;"><strong>{{x.titulo}}</strong></p>
+                      <p class="" style="font-size:14px;">{{x.subtitulo}}</p>
+                      <p class=""><strong>Municipio: </strong>{{x.desmuni}} ({{x.isla}})</p>
+                      <p class=""><strong>Lugar: </strong><a href="detal-espacio.html?id={{x.idespacio}}">{{x.denominacion}}</a></p>
+                      <p class=""><strong>Comienzo: </strong>{{x.fecini | date}}</p>
+                      <p class=""><strong>Finaliza: </strong>{{x.fecfin | date}}</p>
+                      <a href="event.html?id={{x.id}}" class="text-center list-group-item list-group-item-action">Más Info</a>
+                  </div>
+                </div>
+              </div>
+						</div>
+        </div>
+        <div id="ctrlbuttons" style="margin-bottom: 5%;" class="pager" role="group" >
+              <ul class="pager">
+                <li class="previous" ng-click="PrevItem()"><a href="#">Previo</a></li>
+                <li class="next" ng-click="NextItem()"><a href="#">Siguiente</a></li>
+              </ul>
+        </div>
+			</div>
+		</div>
+		<script>
+      var tmp = 1;
+      var url = apiurl + "event/list/"+ tmp;
 
-        <dl>
-          <dt><img class ="imglist" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/ensenarafrica.jpg"  alt="Product image" title="Product Image" />
-
-            Enseñar África
-
-          </dt>
-          <dd>
-            <p>
-              <i class="fa fa-info-circle"></i> Muestra el trabajo de los alumnos de Secundaria integrados en el proyecto homónimo
-              ... <br />
-              <strong><a class= "goright" href="event.html">Más Info</a></strong><br />
-              <i class="fa fa-globe"></i> Las Palmas de Gran Canaria<br />
-              <i class="fa fa-map-marker"></i><a href="ver-espacio.html"> Casa África</a><br />
-              <i class="fa fa-calendar"></i> Desde el <strong>viernes 20 mayo 2016</strong> hasta el <strong>viernes 30 diciembre 2016 </strong><br />
-            </p>
-				  </dd>
-          </dl>
-        <dl>
-          <dt><img class = "imglist" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/expotrino.jpg" alt="Product image" title="Product Image" />
-
-            Exposición permanente del fotoperiodista Trino Garriga
-
-          </dt>
-          <dd>
-            <p>
-              <i class="fa fa-info-circle"></i> Memoria gráfica del acontecer histórico de Canarias
-              ... <br />
-              <strong><a class= "goright" href="event.html">Más Info</a></strong><br />
-              <i class="fa fa-globe"></i> Santa Cruz de Tenerife<br />
-              <i class="fa fa-map-marker"></i><a href="ver-espacio.html"> Sala de Exposición Los Lavaderos</a><br />
-              <i class="fa fa-calendar"></i> Desde el <strong>martes 21 junio 2016</strong> hasta el <strong>sábado 31 diciembre 2016</strong><br />
-            </p>
-				  </dd>
-        </dl>
-
-        <dl>
-          <dt><img class="imglist" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/dealtamira.jpg" alt="Product image" title="Product Image" />
-
-            El largo viaje… De Altamira a la Cueva Pintada
-          </dt>
-          <dd>
-            <p>
-              <i class="fa fa-info-circle"></i> Exposición que simboliza el esperado encuentro de dos yacimientos arqueológicos únicos y emblemáticos, separados por treinta y tres mil años
-              ... <br />
-              <strong><a class= "goright" href="event.html">Más Info</a></strong><br />
-              <i class="fa fa-globe"></i> Gáldar<br />
-              <i class="fa fa-map-marker"></i><a href="ver-espacio.html"> Museo y Parque Arqueológico Cueva Pintada</a><br />
-              <i class="fa fa-calendar"></i> Desde el <strong>martes 12 julio 2016</strong> hasta el <strong>domingo 27 noviembre 2016</strong><br />
-            </p>
-          </dd>
-        </dl>
-
-        <dl>
-          <dt><img class="imglist" src="http://www.gobiernodecanarias.org/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/juancarlostacoronte.jpg" alt="Product image" title="Product Image" />
-            Taller de Teatro para Jóvenes
-          </dt>
-          <dd>
-            <p>
-              <i class="fa fa-info-circle"></i> Edad: de 14 a 16 años. Gratuito.Imparte: Juan Carlos Tacoronte. Todos los lunes
-              ... <br />
-              <strong><a class= "goright" href="event.html">Más Info</a></strong><br />
-              <i class="fa fa-globe"></i> Santa Cruz de Tenerife<br />
-              <i class="fa fa-map-marker"></i><a href="ver-espacio.html"> Biblioteca Pública del Estado en Santa Cruz de Tenerife</a><br />
-              <i class="fa fa-calendar"></i> Desde el <strong>lunes 05 septiembre 2016</strong> hasta el <strong>lunes 26 diciembre 2016</strong><br />
-            </p>
-          </dd>
-        </dl>
-
-      </div>
-
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src="js/index.js"></script>
-
-
-  </body>
+			var app = angular.module('app', []);
+      app.controller('ctrl', function($scope, $http) {
+      $http.get(url).
+      success(function(response) {
+        $scope.eventos = response.data;
+        // console.log($scope.events);
+        });
+        $scope.NextItem = function () {
+          GetNextItem(tmp);
+          $http.get(url).
+            success(function(response) {
+              $scope.eventos = response.data;
+          });
+        }
+        $scope.PrevItem = function () {
+          GetPrevItem(tmp);
+          $http.get(url).
+            success(function(response) {
+              $scope.eventos = response.data;
+          });
+        }
+      });
+		</script>
+	</body>
 </html>
