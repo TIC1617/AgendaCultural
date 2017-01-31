@@ -19,6 +19,12 @@ function formEventsValidation(validate){
 
 }
 
+function closeSession(){
+	window.localStorage.setItem("token", "");
+	window.location = 'login.html';
+	//location.reload(true);
+}
+
 function getCookie(cname) {
 	var name = cname + "=";
 	var decodedCookie = decodeURIComponent(document.cookie);

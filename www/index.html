@@ -1,43 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8" />
+	<head>
+		<meta charset="utf-8" />
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/map.css">
-  <script type="text/javascript" src="js/map.js"></script>
-	<script type="text/javascript" src="js/api.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<!-- Styles -->
+		<link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+		<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400'>
+		<link rel="stylesheet" href='http://fontawesome.io/assets/font-awesome/css/font-awesome.css'>
+		<link rel="stylesheet" href="css/global.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/style.css">
 
-	<!-- Styles -->
-	<link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
-	<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400'>
-	<link rel="stylesheet" href='http://fontawesome.io/assets/font-awesome/css/font-awesome.css'>
-	<link rel="stylesheet" href="css/global.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="css/style.css">
+		<!-- Scripts -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script type="text/javascript" src="js/global.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script type="text/javascript" src="js/api.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 
-
-
-	<!-- Scripts -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script type="text/javascript" src="js/api.js"></script>
-	<script type="text/javascript" src="js/eventlist.js"></script>
-
-	<title>Espacio</title>
-</head>
-<body>
-	<div ng-app="app" ng-controller="ctrl" />
+		<title>Validación de eventos</title>
+	</head>
+	<body>
 		<!-- Header -->
 		<div class="wrap">
 			<div class="toggle-overlay">
@@ -68,7 +56,7 @@
 				<a href="#" class="notification dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i></a>
 				<ul class="dropdown-menu dropdown-menu-right">
 					<li><a href="login.html">Acceso</a></li>
-					<li><a href="#">Salir</a></li>
+					<li><a href="#" onclick="closeSession();">Salir</a></li>
 				</ul>
 				<a href="#" class="all"><span class="ion-android-search"></span></a>
 			</div><!--header//-->
@@ -83,64 +71,67 @@
 				</a>
 			</div>
 		</div>
+
+		<!-- Body -->
+		<div ng-app="app" ng-controller="ctrl">
 			<div id="main">
 				<div class="title col-md-7 col-sm-12 col-xs-12">
 					<h1> Últimos Eventos<h1>
 				</div>
 				<div class="container-fluid">
-						<div id="evenlist"class="container-fluid col-md-12 col-sm-12 col-xs-12 ">
-              <div ng-repeat="x in eventos">
-                <div id="EventItm" class="col-md-12 col-sm-12 col-xs-12">
-                  <div id="EvImg" style="margin-top: 8%" class="col-md-5 col-sm-5 col-xs-5">
-                    <a href="#"><img style="width: 250px;" class="img-thumbnail" src="http://www.gobiernodecanarias.com/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/{{x.imagen}}" alt="" data-rel="external"/></a>
-                  </div>
-                  <div id="EvInfo" style="margin-top: 5%" class="col-md-7 col-sm-7 col-xs-7">
-                      <p class="" style="font-size:18px;"><strong>{{x.titulo}}</strong></p>
-                      <p class="" style="font-size:14px;">{{x.subtitulo}}</p>
-                      <p class=""><strong>Municipio: </strong>{{x.desmuni}} ({{x.isla}})</p>
-                      <p class=""><strong>Lugar: </strong><a href="detal-espacio.html?id={{x.idespacio}}">{{x.denominacion}}</a></p>
-                      <p class=""><strong>Comienzo: </strong>{{x.fecini | date}}</p>
-                      <p class=""><strong>Finaliza: </strong>{{x.fecfin | date}}</p>
-                      <a href="event.html?id={{x.id}}" class="text-center list-group-item list-group-item-action">Más Info</a>
-                  </div>
-                </div>
-              </div>
+					<div id="evenlist"class="container-fluid col-md-12 col-sm-12 col-xs-12 ">
+					  <div ng-repeat="x in eventos">
+						<div id="EventItm" class="col-md-12 col-sm-12 col-xs-12">
+						  <div id="EvImg" style="margin-top: 8%" class="col-md-5 col-sm-5 col-xs-5">
+							<a href="#"><img style="width: 250px;" class="img-thumbnail" src="http://www.gobiernodecanarias.com/opencms8/export/sites/cultura/.content/galeria/eventos/cultura/{{x.imagen}}" alt="" data-rel="external"/></a>
+						  </div>
+						  <div id="EvInfo" style="margin-top: 5%" class="col-md-7 col-sm-7 col-xs-7">
+							  <p class="" style="font-size:18px;"><strong>{{x.titulo}}</strong></p>
+							  <p class="" style="font-size:14px;">{{x.subtitulo}}</p>
+							  <p class=""><strong>Municipio: </strong>{{x.desmuni}} ({{x.isla}})</p>
+							  <p class=""><strong>Lugar: </strong><a href="detal-espacio.html?id={{x.idespacio}}">{{x.denominacion}}</a></p>
+							  <p class=""><strong>Comienzo: </strong>{{x.fecini | date}}</p>
+							  <p class=""><strong>Finaliza: </strong>{{x.fecfin | date}}</p>
+							  <a href="event.html?id={{x.id}}" class="text-center list-group-item list-group-item-action">Más Info</a>
+						  </div>
 						</div>
-        </div>
-        <div id="ctrlbuttons" style="margin-bottom: 5%;" class="pager" role="group" >
-              <ul class="pager">
-                <li class="previous" ng-click="PrevItem()"><a href="#">Previo</a></li>
-                <li class="next" ng-click="NextItem()"><a href="#">Siguiente</a></li>
-              </ul>
-        </div>
+					  </div>
+					</div>
+				</div>
+				<div id="ctrlbuttons" style="margin-bottom: 5%;" class="pager" role="group" >
+					  <ul class="pager">
+						<li class="previous" ng-click="PrevItem()"><a href="#">Previo</a></li>
+						<li class="next" ng-click="NextItem()"><a href="#">Siguiente</a></li>
+					  </ul>
+				</div>
 			</div>
 		</div>
 		<script>
-      var tmp = 1;
-      var url = apiurl + "event/list/"+ tmp;
+			var tmp = 1;
+			var url = apiurl + "event/list/"+ tmp;
 
 			var app = angular.module('app', []);
-      app.controller('ctrl', function($scope, $http) {
-      $http.get(url).
-      success(function(response) {
-        $scope.eventos = response.data;
-        // console.log($scope.events);
-        });
-        $scope.NextItem = function () {
-          GetNextItem(tmp);
-          $http.get(url).
-            success(function(response) {
-              $scope.eventos = response.data;
-          });
-        }
-        $scope.PrevItem = function () {
-          GetPrevItem(tmp);
-          $http.get(url).
-            success(function(response) {
-              $scope.eventos = response.data;
-          });
-        }
-      });
+			app.controller('ctrl', function($scope, $http) {
+				$http.get(url).
+				success(function(response) {
+					$scope.eventos = response.data;
+					// console.log($scope.events);
+				});
+				$scope.NextItem = function () {
+					GetNextItem(tmp);
+					$http.get(url).
+					success(function(response) {
+						$scope.eventos = response.data;
+					});
+				}
+				$scope.PrevItem = function () {
+					GetPrevItem(tmp);
+					$http.get(url).
+					success(function(response) {
+						$scope.eventos = response.data;
+					});
+				}
+			});
 		</script>
 	</body>
 </html>
