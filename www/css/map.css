@@ -7,10 +7,10 @@
 }
 
 .itemEvent, .mapEvent {
-  max-width: 360px;
-  max-height: 203px;
-  width: 360px;
-  height: 203px;
+  max-width: 290px;
+  max-height: 180px;
+  width: 290px;
+  height: 180px;
   border: solid 0.5px;
   margin-left: 14%;
   object-fit: cover;
